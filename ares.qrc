@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/splash">
+        <file>splash.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>Emblem_NSTU_orange.png</file>
+        <file>Emblem_NSTU_orange_r.png</file>
+    </qresource>
+</RCC>
