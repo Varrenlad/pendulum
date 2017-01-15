@@ -25,10 +25,10 @@ QT_BEGIN_NAMESPACE
 class Ui_Graphs
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QGroupBox *groupBox;
-    QCustomPlot *widget1;
+    QCustomPlot *widget;
     QGroupBox *groupBox_2;
     QCustomPlot *widget_2;
     QGroupBox *groupBox_3;
@@ -39,22 +39,22 @@ public:
         if (Graphs->objectName().isEmpty())
             Graphs->setObjectName(QStringLiteral("Graphs"));
         Graphs->resize(463, 634);
-        widget = new QWidget(Graphs);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(0, 0, 461, 631));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(Graphs);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, 0, 461, 631));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setSizeConstraint(QLayout::SetMaximumSize);
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        groupBox = new QGroupBox(widget);
+        groupBox = new QGroupBox(layoutWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        widget1 = new QCustomPlot(groupBox);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 20, 441, 181));
+        widget = new QCustomPlot(groupBox);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(10, 20, 441, 181));
 
         verticalLayout_2->addWidget(groupBox);
 
-        groupBox_2 = new QGroupBox(widget);
+        groupBox_2 = new QGroupBox(layoutWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
         widget_2 = new QCustomPlot(groupBox_2);
         widget_2->setObjectName(QStringLiteral("widget_2"));
@@ -62,7 +62,7 @@ public:
 
         verticalLayout_2->addWidget(groupBox_2);
 
-        groupBox_3 = new QGroupBox(widget);
+        groupBox_3 = new QGroupBox(layoutWidget);
         groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
         widget_3 = new QCustomPlot(groupBox_3);
         widget_3->setObjectName(QStringLiteral("widget_3"));

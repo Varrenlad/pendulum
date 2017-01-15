@@ -16,6 +16,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDockWidget>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
@@ -39,12 +40,13 @@ public:
     QAction *action_6;
     QAction *action_QCustomPlot;
     QWidget *centralWidget;
+    QHBoxLayout *horizontalLayout;
     Scene *openGLWidget;
     QMenuBar *menuBar;
     QMenu *menu_2;
     QDockWidget *dockWidget;
     QWidget *dockWidgetContents_2;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout_2;
     QGroupBox *groupBox;
     QLabel *label_9;
@@ -92,7 +94,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(883, 638);
+        MainWindow->resize(883, 649);
         MainWindow->setMouseTracking(false);
         action_4 = new QAction(MainWindow);
         action_4->setObjectName(QStringLiteral("action_4"));
@@ -106,10 +108,18 @@ public:
         action_QCustomPlot->setObjectName(QStringLiteral("action_QCustomPlot"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        horizontalLayout = new QHBoxLayout(centralWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         openGLWidget = new Scene(centralWidget);
         openGLWidget->setObjectName(QStringLiteral("openGLWidget"));
-        openGLWidget->setGeometry(QRect(40, 30, 300, 200));
+        openGLWidget->setEnabled(true);
+        openGLWidget->setMinimumSize(QSize(400, 300));
         openGLWidget->setFocusPolicy(Qt::StrongFocus);
+
+        horizontalLayout->addWidget(openGLWidget);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -119,22 +129,23 @@ public:
         MainWindow->setMenuBar(menuBar);
         dockWidget = new QDockWidget(MainWindow);
         dockWidget->setObjectName(QStringLiteral("dockWidget"));
-        dockWidget->setMinimumSize(QSize(242, 529));
+        dockWidget->setMinimumSize(QSize(242, 628));
+        dockWidget->setMaximumSize(QSize(242, 628));
         dockWidget->setFloating(false);
         dockWidget->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
         dockWidget->setAllowedAreas(Qt::LeftDockWidgetArea|Qt::RightDockWidgetArea);
         dockWidgetContents_2 = new QWidget();
         dockWidgetContents_2->setObjectName(QStringLiteral("dockWidgetContents_2"));
-        widget = new QWidget(dockWidgetContents_2);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(0, -1, 241, 591));
-        verticalLayout_2 = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(dockWidgetContents_2);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(0, -1, 241, 601));
+        verticalLayout_2 = new QVBoxLayout(layoutWidget);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
         verticalLayout_2->setSizeConstraint(QLayout::SetMaximumSize);
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        groupBox = new QGroupBox(widget);
+        groupBox = new QGroupBox(layoutWidget);
         groupBox->setObjectName(QStringLiteral("groupBox"));
         groupBox->setMinimumSize(QSize(239, 333));
         groupBox->setMaximumSize(QSize(239, 333));
@@ -150,7 +161,7 @@ public:
         lcdNumber_6->setProperty("value", QVariant(10));
         horizontalSlider_2 = new QSlider(groupBox);
         horizontalSlider_2->setObjectName(QStringLiteral("horizontalSlider_2"));
-        horizontalSlider_2->setGeometry(QRect(10, 30, 211, 22));
+        horizontalSlider_2->setGeometry(QRect(10, 30, 211, 21));
         horizontalSlider_2->setMinimum(1);
         horizontalSlider_2->setMaximum(100);
         horizontalSlider_2->setValue(10);
@@ -167,7 +178,7 @@ public:
         label_10->setGeometry(QRect(10, 50, 101, 21));
         horizontalSlider_3 = new QSlider(groupBox);
         horizontalSlider_3->setObjectName(QStringLiteral("horizontalSlider_3"));
-        horizontalSlider_3->setGeometry(QRect(10, 70, 211, 22));
+        horizontalSlider_3->setGeometry(QRect(10, 70, 211, 21));
         horizontalSlider_3->setMinimum(10);
         horizontalSlider_3->setMaximum(300);
         horizontalSlider_3->setSingleStep(10);
@@ -184,7 +195,7 @@ public:
         label_11->setGeometry(QRect(10, 90, 101, 21));
         horizontalSlider_4 = new QSlider(groupBox);
         horizontalSlider_4->setObjectName(QStringLiteral("horizontalSlider_4"));
-        horizontalSlider_4->setGeometry(QRect(10, 110, 211, 22));
+        horizontalSlider_4->setGeometry(QRect(10, 110, 211, 21));
         horizontalSlider_4->setMaximum(100);
         horizontalSlider_4->setOrientation(Qt::Horizontal);
         lcdNumber_9 = new QLCDNumber(groupBox);
@@ -199,7 +210,7 @@ public:
         label_12->setGeometry(QRect(10, 130, 101, 21));
         horizontalSlider_5 = new QSlider(groupBox);
         horizontalSlider_5->setObjectName(QStringLiteral("horizontalSlider_5"));
-        horizontalSlider_5->setGeometry(QRect(10, 150, 211, 22));
+        horizontalSlider_5->setGeometry(QRect(10, 150, 211, 21));
         horizontalSlider_5->setMinimum(1);
         horizontalSlider_5->setMaximum(100);
         horizontalSlider_5->setOrientation(Qt::Horizontal);
@@ -215,7 +226,7 @@ public:
         label_13->setGeometry(QRect(10, 170, 101, 21));
         horizontalSlider_6 = new QSlider(groupBox);
         horizontalSlider_6->setObjectName(QStringLiteral("horizontalSlider_6"));
-        horizontalSlider_6->setGeometry(QRect(10, 190, 211, 22));
+        horizontalSlider_6->setGeometry(QRect(10, 190, 211, 21));
         horizontalSlider_6->setMinimum(-90);
         horizontalSlider_6->setMaximum(90);
         horizontalSlider_6->setValue(90);
@@ -229,7 +240,7 @@ public:
         label_14->setGeometry(QRect(10, 210, 111, 21));
         horizontalSlider_7 = new QSlider(groupBox);
         horizontalSlider_7->setObjectName(QStringLiteral("horizontalSlider_7"));
-        horizontalSlider_7->setGeometry(QRect(10, 230, 211, 22));
+        horizontalSlider_7->setGeometry(QRect(10, 230, 211, 21));
         horizontalSlider_7->setMinimum(0);
         horizontalSlider_7->setMaximum(10);
         horizontalSlider_7->setValue(1);
@@ -240,7 +251,7 @@ public:
         lcdNumber_11->setFrameShadow(QFrame::Plain);
         lcdNumber_11->setDigitCount(7);
         lcdNumber_11->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_11->setProperty("value", QVariant(90));
+        lcdNumber_11->setProperty("value", QVariant(1));
         checkBox_2 = new QCheckBox(groupBox);
         checkBox_2->setObjectName(QStringLiteral("checkBox_2"));
         checkBox_2->setGeometry(QRect(10, 250, 141, 21));
@@ -251,10 +262,10 @@ public:
         lcdNumber_12->setFrameShadow(QFrame::Plain);
         lcdNumber_12->setDigitCount(7);
         lcdNumber_12->setSegmentStyle(QLCDNumber::Flat);
-        lcdNumber_12->setProperty("value", QVariant(90));
+        lcdNumber_12->setProperty("value", QVariant(1));
         horizontalSlider_8 = new QSlider(groupBox);
         horizontalSlider_8->setObjectName(QStringLiteral("horizontalSlider_8"));
-        horizontalSlider_8->setGeometry(QRect(10, 310, 211, 22));
+        horizontalSlider_8->setGeometry(QRect(10, 310, 211, 21));
         horizontalSlider_8->setMinimum(0);
         horizontalSlider_8->setMaximum(10);
         horizontalSlider_8->setValue(1);
@@ -265,10 +276,10 @@ public:
 
         verticalLayout_2->addWidget(groupBox);
 
-        groupBox_2 = new QGroupBox(widget);
+        groupBox_2 = new QGroupBox(layoutWidget);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setMinimumSize(QSize(239, 240));
-        groupBox_2->setMaximumSize(QSize(239, 240));
+        groupBox_2->setMinimumSize(QSize(239, 245));
+        groupBox_2->setMaximumSize(QSize(239, 245));
         lcdNumber = new QLCDNumber(groupBox_2);
         lcdNumber->setObjectName(QStringLiteral("lcdNumber"));
         lcdNumber->setGeometry(QRect(10, 20, 141, 31));
@@ -277,14 +288,14 @@ public:
         lcdNumber->setSegmentStyle(QLCDNumber::Flat);
         horizontalSlider = new QSlider(groupBox_2);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
-        horizontalSlider->setGeometry(QRect(10, 70, 171, 22));
+        horizontalSlider->setGeometry(QRect(10, 70, 171, 21));
         horizontalSlider->setMaximum(200);
         horizontalSlider->setSingleStep(5);
         horizontalSlider->setValue(100);
         horizontalSlider->setOrientation(Qt::Horizontal);
         label = new QLabel(groupBox_2);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(190, 80, 31, 21));
+        label->setGeometry(QRect(190, 70, 31, 21));
         label_2 = new QLabel(groupBox_2);
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setGeometry(QRect(10, 50, 111, 16));
@@ -362,7 +373,6 @@ public:
         label_7->raise();
         pushButton->raise();
         pushButton_3->raise();
-        groupBox->raise();
 
         verticalLayout_2->addWidget(groupBox_2);
 

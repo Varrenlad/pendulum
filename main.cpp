@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
+    //запуск аннотации
     std::unique_ptr<Annotation> anno(new Annotation);
     anno.get()->show();
     anno.get()->startTimer(0);

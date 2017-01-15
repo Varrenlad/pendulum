@@ -16,10 +16,10 @@ class Annotation : public QFrame
 
 public:
     explicit Annotation(QWidget *parent = 0);
-    bool is_key_down = false;
     ~Annotation();
 private:
-    void Annotation::mousePressEvent(QMouseEvent *ev);
+    bool is_key_down = false;
+    void mousePressEvent(QMouseEvent *ev);
     void timerEvent(QTimerEvent *ev);
     void keyPressEvent(QKeyEvent *ev);
     Ui::Annotation *ui;

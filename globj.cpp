@@ -1,8 +1,28 @@
-/*#include "globj.h"
+#include "globj.h"
 
-GLobj::GLobj(QString filename) {
-    meshFilename = filename;
-    QString texturename;
+GLobj::~GLobj() {
+	Faces.clear();
+	Faces.squeeze();
+	Vertices.clear();
+	Vertices.squeeze();
+	Normales.clear();
+	Normales.squeeze();
+	UVs.clear();
+	UVs.squeeze();
+}
+
+GLobj::GLobj(bool rotation, bool texture){
+    rotate_on = rotation;
+    textures_on = texture;
+}
+
+GLobj::GLobj(QString filename, bool rotation, bool texture){
+    rotate_on = rotation;
+    textures_on = texture;
+    LoadMesh(filename);
+}
+
+void GLobj::LoadMesh(QString &filename) {
     QVector3D temp3;
     QVector2D temp2;
     if (!filename.isEmpty()){
@@ -34,90 +54,127 @@ GLobj::GLobj(QString filename) {
                 else if (fileLine.startsWith("f ")){
                     QStringList lineToken = fileLine.split(" ");
                     Face *F = new Face;
-                    for (size_t i = 0; i <= 3; i++){
+                    for (size_t i = 1; i <= 3; i++){
                         QStringList args = lineToken[i].split("/");
-                        F->v[i-1] = Vertices[args[0].toInt()-1];
-                        F->t[i-1] = UVs[args[1].toInt()-1];
-                        F->n[i-1] = Normales[args[2].toInt()-1];
+                        F->Vertices[i-1] = Vertices[args[0].toInt()-1];
+                        F->UVs[i-1] = UVs[args[1].toInt()-1];
+                        F->Normales[i-1] = Normales[args[2].toInt()-1];
                     }
                     Faces.push_back(*F);
                 }
-                else if(fileLine.startsWith("mtlib ")){
-                    QStringList lineToken = fileLine.split(" ");
-                    texturename = lineToken[1];
-                }
-            }
-        }
-        file.close();
-        QFileInfo fi(meshFilename);
-        QString baseName = fi.fileName();
-        QString fn(filename);
-        fn.remove(fn.size() - baseName.size(), baseName.size());
-        LoadMTL(fn, fn + texturename);
-    }
-}
-
-void GLobj::Render()
-{
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable( GL_TEXTURE_2D );
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glPushMatrix();
-        glBegin(GL_TRIANGLES);
-        for(int i = 0; i < Faces.size(); i++)
-        {
-            for(int j = 0; j < 3; j++)
-            {
-                glNormal3f(Faces[i].n[j].x(), Faces[i].n[j].y(), Faces[i].n[j].z());
-                glTexCoord2f(Faces[i].t[j].x(), Faces[i].t[j].y());
-                glVertex3f(Faces[i].v[j].x(), Faces[i].v[j].y(), Faces[i].v[j].z());
-            }
-        }
-        glEnd();
-    glPopMatrix();
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_LIGHTING);
-    glDisable(GL_LIGHT0);
-}
-
-void GLobj::LoadMTL(QString fn, QString MTLname)
-{
-    if(!MTLname.isEmpty())
-    {
-        QFile file(MTLname);
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            QTextStream fileText(&file);
-            while (!fileText.atEnd())
-            {
-                QString fileLine = fileText.readLine();
-                if(fileLine.startsWith("map_Kd "))
-                {
-                    QStringList lineList = fileLine.split(" ");
-					textureFilename = fn + lineList[1];
-                    LoadTexture();
-                }
             }
         }
         file.close();
     }
+#ifndef NOARRAYS
+	Vertices.clear();
+	UVs.clear();
+	Normales.clear();
+	for (size_t i = 0; i < Faces.size(); ++i) {
+		Vertices.append(Faces[i].Vertices);
+		UVs.append(Faces[i].UVs);
+		Normales.append(Faces[i].Normales);
+	}
+#endif
 }
 
-void GLobj::LoadTexture()
-{
-    if (textureFilename.isEmpty())
-        throw EXCEPTION_NONCONTINUABLE;
+void GLobj::setTexture(GLuint texture){
+    m_texture = texture;
+}
 
-	textureImage = QImage(textureFilename);
-	textureImage = QGLWidget::convertToGLFormat(textureImage);
-    glGenTextures( 1, &texture );
-    glBindTexture( GL_TEXTURE_2D, texture );
+void GLobj::setMaterial(Material &type){
+    m_material = type;
+}
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textureImage.width(), textureImage.height(), 0, GL_RGBA,
-                 GL_UNSIGNED_BYTE, textureImage.bits());
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);
-    glBindTexture( GL_TEXTURE_2D, 0 );
-}*/
+void GLobj::setPosition(QVector3D n_p){
+    if (n_p == m_position)
+        return;
+    m_position = n_p;
+}
+
+void GLobj::setScale(QVector3D n_s){
+    if (n_s == m_scale)
+        return;
+    m_scale = n_s;
+}
+
+void GLobj::setRotation(QVector3D n_r){
+    if (n_r == m_rotation)
+        return;
+    m_rotation = n_r;
+}
+
+QVector3D GLobj::getScale(){
+    return m_scale;
+}
+
+Material GLobj::getMaterial(){
+    return m_material;
+}
+
+QVector3D GLobj::getPosition(){
+    return m_position;
+}
+
+QVector3D GLobj::getRotation(){
+    return m_rotation;
+}
+
+GLuint GLobj::getTexture(){
+    return m_texture;
+}
+
+QVector<QVector3D>& GLobj::mVertices(){
+    return Vertices;
+}
+
+QVector<QVector3D>& GLobj::mNormales(){
+    return Normales;
+}
+
+QVector<QVector2D>& GLobj::mUVs(){
+    return UVs;
+}
+
+bool GLobj::isRotatable(){
+    return rotate_on;
+}
+
+bool GLobj::isTextured(){
+    return textures_on;
+}
+
+QVector<Face>& GLobj::mFaces(){
+    return Faces;
+}
+
+void GLobj::setVBO(GLuint vbo, VBOtype type) {
+	if (vbo == 0)
+		throw 1;
+	switch (type) {
+	case VERTEX:
+		VBOv = vbo;
+		break;
+	case NORMAL:
+		VBOn = vbo;
+		break;
+	case TEXTURE:
+		if (!textures_on)
+			throw 2;
+		VBOu = vbo;
+		break;
+	}
+}
+
+GLuint GLobj::getVBO(VBOtype type) {
+	switch (type) {
+	case VERTEX:
+		return VBOv;
+	case NORMAL:
+		return VBOn;
+	case TEXTURE:
+		if (!textures_on)
+			throw 2;
+		return VBOu;
+	}
+}

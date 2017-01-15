@@ -8,9 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    //запуск аннотации
+
 }
 
 MainWindow::~MainWindow(){
     delete ui;
 }
+

@@ -11,6 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += opengl widgets
 TARGET = pend2
 TEMPLATE = app
 
+CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -19,7 +20,9 @@ SOURCES += main.cpp\
     globj.cpp \
     scene.cpp \
     qcustomplot.cpp \
-    graphs.cpp
+    graphs.cpp \
+    rungekutta4.cpp \
+    vboindexer.cpp
 
 HEADERS  += mainwindow.h \
     annotation.h \
@@ -27,13 +30,18 @@ HEADERS  += mainwindow.h \
     globj.h \
     scene.h \
     qcustomplot.h \
-    graphs.h
+    graphs.h \
+    rungekutta4.h \
+    vboindexer.h
 
 FORMS    += mainwindow.ui \
     annotation.ui \
     graphs.ui
 
 RESOURCES += \
-    ares.qrc
+    ares.qrc \
+    models.qrc
 
+win32{
 LIBS += opengl32.lib
+}

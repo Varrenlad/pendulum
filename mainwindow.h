@@ -17,7 +17,7 @@ public:
     ~MainWindow();
 private:
     Ui::MainWindow *ui;
-    //std::unique_ptr<Phyzxmodel> model = new Phyzxmodel;
+    Phyzxmodel phyz;
 
 };
 
