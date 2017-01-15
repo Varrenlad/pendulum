@@ -21,8 +21,7 @@ SOURCES += main.cpp\
     scene.cpp \
     qcustomplot.cpp \
     graphs.cpp \
-    rungekutta4.cpp \
-    vboindexer.cpp
+    rungekutta4.cpp
 
 HEADERS  += mainwindow.h \
     annotation.h \
@@ -31,8 +30,7 @@ HEADERS  += mainwindow.h \
     scene.h \
     qcustomplot.h \
     graphs.h \
-    rungekutta4.h \
-    vboindexer.h
+    rungekutta4.h
 
 FORMS    += mainwindow.ui \
     annotation.ui \
