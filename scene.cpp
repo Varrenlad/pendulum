@@ -9,7 +9,7 @@ GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
 GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
 Scene::Scene(QWidget *parent){
-
+    this->connect(this, Scene::updateModel, model, Phyzxmodel::currentTime);
     Default();
 }
 
@@ -34,6 +34,7 @@ void Scene::actionTime(){
 }
 
 void Scene::timerEvent(QTimerEvent *qte) {
+
     update();
 }
 
@@ -92,10 +93,10 @@ void Scene::initializeGL(){
 
     lowershell->setTexture(plastic_id);
     uppershell->setTexture(plastic_id);
-    shaft->setTexture(metal_id);
+    //shaft->setTexture(metal_id);
     stand->setTexture(wood_id);
-    swing->setTexture(metal_id);
-    plank->setTexture(metal_id);
+    //swing->setTexture(metal_id);
+    //plank->setTexture(metal_id);
 
     glClearColor(1, 1, 1, 1);
     glEnable(GL_DEPTH_TEST);
@@ -290,7 +291,7 @@ void Scene::LightUpdate(){
 void Scene::draw() {
     //Draw grid
     glColor3f(1.0, 0.0, 0.0);
-    for(int x = 0; x < 3; x++){
+    for(int x = 1; x < 3; x++){
       glBegin(GL_LINE_STRIP);
       glVertex3f(0,x,-3);
       glVertex3f(0,x,3);
@@ -411,4 +412,13 @@ void Scene::deleteVBO(GLobj &to_remove) {
 	if (to_remove.isTextured())
 		buffers[2] = to_remove.getVBO(TEXTURE);
 	glDeleteBuffers(3, buffers);
+}
+
+
+void Scene::updateModel(double time){
+    emit (cycles * dt);
+}
+
+void Scene::linkModel(Phyzxmodel *o_model){
+    model = o_model;
 }

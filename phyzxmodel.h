@@ -22,20 +22,16 @@ public:
     void updateData();
     double getKEnergy();
     double getPEnergy();
-    double getDiam();
     double getPeriod();
-    double getSpd();
     ~Phyzxmodel();
     //remove copy and move constructors
     Phyzxmodel(Phyzxmodel const &) = delete;
     void operator=(Phyzxmodel const &that) = delete;
 public slots:
     void setTht0(double t_z);
-    void setRDens(double n_d);
+    void setRMass(double n_m);
     void setLen(double n_l);
     void setSpd(double n_s);
-    void setDiam(double n_d);
-    void setODens(double n_d);
     void setComp(COMPOUND n_c);
     void setDamp(double n_d);
     void currentTime(double t_a);
@@ -43,14 +39,14 @@ public slots:
     double getTheta();
     COMPOUND getComp();
 private:
+    void isReady();
     RungeKutta4 *RK4Worker;
     QVector2D data;
     //QVector<QPoint> graph;
-    double rod_density{-1}, rod_length{-1}, simulation_speed{-1},
-    object_density{}, object_diameter{}, object_width{},
-    theta_zero{}, theta_max{}, theta_current{}, damping_factor{},
+    double rod_length{-1}, rod_mass{-1}, simulation_speed{-1},
+    object_mass{}, theta_zero{-1}, theta_current{}, damping_factor{},
     preserved_energy{}, kinetic_energy{}, swing_period{},
-    damping_factor_liquid{}, rod_diameter{-1}, inertia_moment{};
+    natutal_freq{};
     COMPOUND p_type;
     bool m_dirty = true, m_ready = false;
 };

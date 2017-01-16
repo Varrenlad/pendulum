@@ -1,8 +1,9 @@
 #ifndef _RSCENE_H
 #define _RSCENE_H
 #include "globj.h"
+#include "phyzxmodel.h"
 
-#include <iostream>
+//#include <iostream>
 #include <QOpenGLWidget>
 //Qt before 5.5? Never heard of
 #include <QtOpenGL/QtOpenGL>
@@ -13,6 +14,7 @@
 #include <QTextStream>
 #include <QVector3D>
 #include <QVector2D>
+#include <ctime>
 
 class Scene : public QOpenGLWidget, protected QOpenGLFunctions {
     Q_OBJECT
@@ -47,6 +49,11 @@ private:
     GLuint wood_id, plastic_id, metal_id;
 	GLuint elementbuffer;
 
+    time_t time;
+    double dt;
+    unsigned int cycles;
+    Phyzxmodel *model;
+
     void RenderGLobj(GLobj &to_render);
     void createVBO(GLobj &to_load);
 	void deleteVBO(GLobj &to_remove);
@@ -65,9 +72,10 @@ private:
     void timerEvent(QTimerEvent * qte); // обработка события таймера
 public:
     explicit Scene(QWidget *parent = 0);
+    void linkModel(Phyzxmodel *o_model);
     ~Scene();
 signals:
-
+    void updateModel(double time);
 public slots:
     void rodReload(bool isBallUsed);
     void actionTime();

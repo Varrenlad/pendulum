@@ -1,4 +1,5 @@
 #include "rungekutta4.h"
+#include <cmath>
 
 RungeKutta4::RungeKutta4() {}
 

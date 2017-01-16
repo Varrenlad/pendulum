@@ -5,13 +5,14 @@ Phyzxmodel::Phyzxmodel() {}
 Phyzxmodel::~Phyzxmodel() {}
 
 void Phyzxmodel::setUp(){
+    isReady();
+    if (!m_ready)
+        throw 1;
+    natutal_freq = swing_period = 2 * PI * sqrt(rod_length + G) * (1 + 1/4 * pow(sin(toRad(theta_current) / 2), 2)
+                                                                   + 9/64*pow(sin(toRad(theta_current) / 2), 4));
     RK4Worker = new RungeKutta4();
-    RK4Worker->setUp(0.1, 0);
-	preserved_energy = 1 / 2 * (1.42 + sin(theta_zero) * rod_length) - cos(0 + cos(theta_zero) * rod_length);
-    //inertia moment is constant after we get all the variables and will not change greatly
-    inertia_moment = 1/3 * rod_density * (rod_length * pow(rod_diameter,2)) / 4000 *
-                    pow(rod_length, 2) + 2/5 * object_density * (PI * pow(object_diameter, 3)) / 6000 *
-                    object_diameter * object_diameter / 2 * object_diameter / 2;
+    RK4Worker->setUp(0.1, damping_factor / (2 * (object_mass + rod_mass)));
+    preserved_energy = 1 / 2 * (1.42 + sin(theta_zero) * rod_length) - cos(0 + cos(theta_zero) * rod_length);
 }
 
 void Phyzxmodel::setTht0(double t_z){
@@ -19,9 +20,9 @@ void Phyzxmodel::setTht0(double t_z){
     theta_zero = t_z;
 }
 
-void Phyzxmodel::setRDens(double n_d){
+void Phyzxmodel::setRMass(double n_m){
     m_dirty = true;
-    rod_density = n_d;
+    rod_mass = n_m;
 }
 
 void Phyzxmodel::setLen(double n_l){
@@ -32,16 +33,6 @@ void Phyzxmodel::setLen(double n_l){
 void Phyzxmodel::setSpd(double n_s){
     m_dirty = true;
     simulation_speed = n_s;
-}
-
-void Phyzxmodel::setDiam(double n_d){
-    m_dirty = true;
-    object_diameter = n_d;
-}
-
-void Phyzxmodel::setODens(double n_d){
-    m_dirty = true;
-    object_density = n_d;
 }
 
 void Phyzxmodel::setComp(COMPOUND n_c){
@@ -58,7 +49,6 @@ void Phyzxmodel::setDamp(double n_d){
 void Phyzxmodel::currentTime(double t_a){
     if (!m_dirty && m_ready){
     data = RK4Worker->RK4Step(t_a);
-
     angleChanged(data.x());
     }
 }
@@ -79,9 +69,12 @@ COMPOUND Phyzxmodel::getComp(){
 
 //main working module
 void Phyzxmodel::updateData(){
-    if (rod_density == -1 || rod_length == -1 || simulation_speed == -1 || rod_diameter == -1)
+    if (!m_ready)
+        throw 1;
+    if (rod_mass == -1 || rod_length == -1 || simulation_speed == -1)
         throw 0; //we need these values before evaluating data
-    swing_period = 4 * sqrt(rod_length + object_diameter) * (1 + 1/4 * pow(sin(toRad(theta_current) / 2), 2) + 9/64*pow(sin(toRad(theta_current) / 2), 4));
+    swing_period = 2 * PI * sqrt(rod_length + G) *
+            (1 + 1/4 * pow(sin(toRad(theta_current) / 2), 2) + 9/64*pow(sin(toRad(theta_current) / 2), 4));
 }
 
 double Phyzxmodel::getKEnergy(){
@@ -92,17 +85,16 @@ double Phyzxmodel::getPEnergy(){
     return preserved_energy;
 }
 
-double Phyzxmodel::getDiam(){
-    return object_diameter;
-}
-
 double Phyzxmodel::getPeriod(){
     return swing_period;
 }
 
-double Phyzxmodel::getSpd(){
-    //Inertia moment = 1/3 * m * rod_length^2 + 2/5 * obj_mass * obj_raduis^2
-    //Thx Wiki
-    //Though it's a bit complicated
-    return sqrt(kinetic_energy * 2 / inertia_moment);
+void Phyzxmodel::isReady(){
+    if (m_dirty)
+        delete RK4Worker;
+    if (rod_length != -1 && rod_mass != -1 &&
+            simulation_speed != -1 && theta_zero != -1){
+        m_dirty = false;
+        m_ready = true;
+    }
 }
