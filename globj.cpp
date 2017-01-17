@@ -163,6 +163,8 @@ void GLobj::setVBO(GLuint vbo, VBOtype type) {
 			throw 2;
 		VBOu = vbo;
 		break;
+    default:
+        throw 3;
 	}
 }
 
@@ -176,5 +178,7 @@ GLuint GLobj::getVBO(VBOtype type) {
 		if (!textures_on)
 			throw 2;
 		return VBOu;
+    default:
+        throw 3;
 	}
 }

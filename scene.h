@@ -75,7 +75,7 @@ public:
     void linkModel(Phyzxmodel *o_model);
     ~Scene();
 signals:
-    void updateModel(double time);
+    //void updateModel(double time);
 public slots:
     void rodReload(bool isBallUsed);
     void actionTime();

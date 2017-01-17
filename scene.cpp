@@ -9,7 +9,7 @@ GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
 GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
 Scene::Scene(QWidget *parent){
-    this->connect(this, Scene::updateModel, model, Phyzxmodel::currentTime);
+    //this->connect(this, Scene::updateModel, model, Phyzxmodel::currentTime);
     Default();
 }
 
@@ -415,9 +415,9 @@ void Scene::deleteVBO(GLobj &to_remove) {
 }
 
 
-void Scene::updateModel(double time){
+/*void Scene::updateModel(double time){
     emit (cycles * dt);
-}
+}*/
 
 void Scene::linkModel(Phyzxmodel *o_model){
     model = o_model;

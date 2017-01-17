@@ -25,7 +25,7 @@ void Annotation::timerEvent(QTimerEvent *ev){
     static uint32_t i = 0;
     ++i;
     if (is_key_down || i == 500000 || !this->isVisible()){
-        delete ui->label;
+        this->hide();
         killTimer(ev->timerId());
     }
     else if (!this->isActiveWindow()){
