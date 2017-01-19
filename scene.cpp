@@ -9,7 +9,7 @@ GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
 GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
 Scene::Scene(QWidget *parent){
-    //this->connect(this, Scene::updateModel, model, Phyzxmodel::currentTime);
+    ltime.Update();
     Default();
 }
 
@@ -29,37 +29,21 @@ Scene::~Scene(){
     delete shaft;
 }
 
-void Scene::actionTime(){
-    //IMPLEMENT ME
-}
-
-void Scene::timerEvent(QTimerEvent *qte) {
-
+void Scene::timerEvent(QTimerEvent *) {
     update();
 }
 
 void Scene::initializeGL(){
     initializeOpenGLFunctions();
+    connect(this, SIGNAL(frameSwapped()), this, SLOT(update()));
     QSurfaceFormat format;
     format.setDepthBufferSize(24);
     format.setStencilBufferSize(8);
-    format.setVersion(3, 3);
+    format.setVersion(1, 1);
     format.setSamples(8);
     format.setProfile(QSurfaceFormat::CoreProfile);
     this->context()->setFormat(format);
-    //set up shaders
-    /*if (!v_shader->addShaderFromSourceFile(QOpenGLShader::Vertex, QStringLiteral(":/shaders/mNt/v_shader.glsl")))
-        use_shaders = false;
-    else {
-        v_shader->link();
-        v_shader->bind();
-    }
-    if (!f_shader->addShaderFromSourceFile(QOpenGLShader::Fragment, QStringLiteral(":/shaders/mNt/f_shader.glsl")))
-        use_shaders = false;
-    else {
-        v_shader->link();
-        v_shader->bind();
-    }*/
+
     wood = new QOpenGLTexture(QImage(":/textures/mNt/wood.jpg"));
     wood->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);
     wood->setMagnificationFilter(QOpenGLTexture::Linear);
@@ -147,6 +131,16 @@ void Scene::paintGL() {
      glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
      glTranslatef(0.0f, 0.75f, 0.0f);
 
+
+     ++nbFrames;
+     if (ltime.Elapsed() >= 1.0){ // If last print was more than 1 sec ago
+         // print and reset timer
+         emit spf((1000.0/double(nbFrames)));
+         nbFrames = 0;
+         ltime.Update();
+     }
+
+
 	 draw();
 }
 
@@ -165,7 +159,7 @@ void Scene::mousePressEvent(QMouseEvent *qme){
     mousePoz = qme->pos();
 }
 
-void Scene::mouseReleaseEvent(QMouseEvent *qme){
+void Scene::mouseReleaseEvent(QMouseEvent *){
     draw();
     update();
 }
@@ -189,10 +183,10 @@ void Scene::keyPressEvent(QKeyEvent *qke){
                     QVector3D(-1.0f, 0.0f, 0.0f));
         break;
 	case Qt::Key_G:
-		rodReload(false);
+        //rodReload(false);
 		break;
 	case Qt::Key_H:
-		rodReload(true);
+        //rodReload(true);
 		break;
     case Qt::Key_Plus:
         Scale(PLUS);
@@ -320,11 +314,6 @@ void Scene::mouseMoveEvent(QMouseEvent* pe) {
     update();
 }
 
-void Scene::updateDraw(){
-    draw();
-    update();
-}
-
 void Scene::RenderGLobj(GLobj &to_render) {
 	if (to_render.isTextured()) {
 		glEnable(GL_TEXTURE_2D);
@@ -377,16 +366,9 @@ void Scene::RenderGLobj(GLobj &to_render) {
     glDisable(GL_TEXTURE_2D);
 }
 
-void Scene::rodReload(bool isBallUsed){
-	deleteVBO(*swing);
-    delete swing;
-    if (isBallUsed)
-        swing = new GLobj(QStringLiteral(":/meshes/mNt/swingwithball.obj"), true, false);
-    else
-        swing = new GLobj(QStringLiteral(":/meshes/mNt/swingnoball.obj"), true, false);
-    createVBO(*swing);
-    draw();
-}
+/*(void Scene::rodReload(bool isBallUsed){
+
+}*/
 
 void Scene::createVBO(GLobj &to_load){
     GLuint *temp_VBO = new GLuint[3];
@@ -414,11 +396,51 @@ void Scene::deleteVBO(GLobj &to_remove) {
 	glDeleteBuffers(3, buffers);
 }
 
+void Scene::toggleRunning(){
 
-/*void Scene::updateModel(double time){
-    emit (cycles * dt);
-}*/
+}
 
-void Scene::linkModel(Phyzxmodel *o_model){
-    model = o_model;
+void Scene::setInterrupted(){
+
+}
+
+void Scene::setAngle(double new_angle){
+    swing->setRotation(QVector3D(new_angle, 0.0f, 0.0f));
+    model.setTht0(new_angle);
+    draw();
+}
+
+void Scene::setMass(double new_mass){
+    model.setRMass(new_mass);
+}
+
+void Scene::setType(bool isBallUsed){
+    deleteVBO(*swing);
+    delete swing;
+    if (isBallUsed)
+        swing = new GLobj(QStringLiteral(":/meshes/mNt/swingwithball.obj"), true, false);
+    else
+        swing = new GLobj(QStringLiteral(":/meshes/mNt/swingnoball.obj"), true, false);
+    createVBO(*swing);
+    draw();
+    model.setComp(isBallUsed ? BALL : NONE);
+}
+
+void Scene::setDelta(double new_delta){
+    model.setSpd(new_delta);
+}
+
+void Scene::setDamping(double damp_data){
+    model.setDamp(damp_data);
+}
+
+void Scene::setSpeed(int new_speed){
+    iFPS = new_speed;
+}
+void Scene::setImpulse(double new_impulse){
+    model.setImp(new_impulse);
+}
+
+void Scene::setLength(double new_length){
+    model.setLen(new_length);
 }

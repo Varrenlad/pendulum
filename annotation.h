@@ -5,6 +5,7 @@
 #include <QApplication>
 #include <QDesktopWidget>
 #include <QPoint>
+#include <QTimer>
 
 namespace Ui {
 class Annotation;
@@ -20,7 +21,6 @@ public:
 private:
     bool is_key_down = false;
     void mousePressEvent(QMouseEvent *ev);
-    void timerEvent(QTimerEvent *ev);
     void keyPressEvent(QKeyEvent *ev);
     Ui::Annotation *ui;
 };

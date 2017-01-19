@@ -1,3 +1,4 @@
+#ifdef RUNGEKUTTA4_H
 #include "rungekutta4.h"
 #include <cmath>
 
@@ -24,3 +25,4 @@ void RungeKutta4::setUp(double time_step, double damping_constant){
     dt = time_step;
     damping = damping_constant;
 }
+#endif

@@ -1,4 +1,4 @@
-#ifndef RUNGEKUTTA4_H
+#ifdef RUNGEKUTTA4_H
 #define RUNGEKUTTA4_H
 
 #include <QVector2D>

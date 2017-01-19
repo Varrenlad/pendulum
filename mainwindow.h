@@ -15,6 +15,14 @@ class MainWindow : public QMainWindow{
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+public slots:
+
+
+signals:
+    //void on_hsSpeed_valueChanged(int value);
+
+
 private:
     Ui::MainWindow *ui;
     Phyzxmodel phyz;

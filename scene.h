@@ -2,10 +2,12 @@
 #define _RSCENE_H
 #include "globj.h"
 #include "phyzxmodel.h"
+#include "timer.h"
 
 //#include <iostream>
 #include <QOpenGLWidget>
 //Qt before 5.5? Never heard of
+#include <QTimer>
 #include <QtOpenGL/QtOpenGL>
 #include <QOpenGLFunctions_1_1>
 #include <QOpenGLTexture>
@@ -20,6 +22,9 @@ class Scene : public QOpenGLWidget, protected QOpenGLFunctions {
     Q_OBJECT
 
 private:
+    Timer ltime;
+    int nbFrames = 0;
+
     GLobj *lowershell, *plank, *shaft, *stand, *swing, *uppershell;
 
     GLfloat xRot;
@@ -41,10 +46,6 @@ private:
     void LightUpdate();
 
     QOpenGLTexture *wood, *plastic, *metal;
-    //QOpenGLShaderProgram *v_shader;
-    //QOpenGLShaderProgram *f_shader;
-
-    bool use_shaders = true;
 
     GLuint wood_id, plastic_id, metal_id;
 	GLuint elementbuffer;
@@ -52,7 +53,7 @@ private:
     time_t time;
     double dt;
     unsigned int cycles;
-    Phyzxmodel *model;
+    Phyzxmodel model;
 
     void RenderGLobj(GLobj &to_render);
     void createVBO(GLobj &to_load);
@@ -64,22 +65,32 @@ private:
     void resizeGL(int, int) Q_DECL_OVERRIDE;
     void paintGL() Q_DECL_OVERRIDE;
     void teardownGL();
-    void mousePressEvent(QMouseEvent* qme);
-    void mouseMoveEvent(QMouseEvent* qme);
-    void mouseReleaseEvent(QMouseEvent* qme);
-    void wheelEvent(QWheelEvent* qwe);
-    void keyPressEvent(QKeyEvent* qke);
-    void timerEvent(QTimerEvent * qte); // обработка события таймера
+    void mousePressEvent(QMouseEvent*);
+    void mouseMoveEvent(QMouseEvent*);
+    void mouseReleaseEvent(QMouseEvent*);
+    void wheelEvent(QWheelEvent*);
+    void keyPressEvent(QKeyEvent*);
+    void timerEvent(QTimerEvent*); // обработка события таймера
 public:
     explicit Scene(QWidget *parent = 0);
-    void linkModel(Phyzxmodel *o_model);
     ~Scene();
 signals:
-    //void updateModel(double time);
+    void diffEnergy(double current_energy);
+    void diffFreq(double const_freq);
+    void diffAngle(double current_angle);
+    void spf(double ms);
 public slots:
-    void rodReload(bool isBallUsed);
-    void actionTime();
-    void updateDraw();
+    void toggleRunning();
+    void setInterrupted();
+    void setAngle(double new_angle);
+    void setMass(double new_mass);
+    void setImpulse(double new_impulse);
+    void setLength(double new_length);
+    //void updateModel(double time);
+    void setType(bool isBallUsed);
+    void setDelta(double new_delta);
+    void setDamping(double damp_data);
+    void setSpeed(int new_speed);
 };
 
 #endif // RSCENE_H

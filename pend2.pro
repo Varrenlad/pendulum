@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     scene.cpp \
     qcustomplot.cpp \
     graphs.cpp \
-    rungekutta4.cpp
+    rungekutta4.cpp \
+    timer.cpp
 
 HEADERS  += mainwindow.h \
     annotation.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h \
     scene.h \
     qcustomplot.h \
     graphs.h \
-    rungekutta4.h
+    rungekutta4.h \
+    timer.h
 
 FORMS    += mainwindow.ui \
     annotation.ui \

@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
     //запуск аннотации
     Annotation anno;
     anno.show();
-    anno.startTimer(0);
     w.show();
     return a.exec();
 }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>883</width>
-    <height>658</height>
+    <height>663</height>
    </rect>
   </property>
   <property name="mouseTracking">
@@ -31,8 +31,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -57,11 +57,11 @@
     <property name="title">
      <string>Информация</string>
     </property>
-    <addaction name="action_6"/>
-    <addaction name="action_Qt"/>
-    <addaction name="action_QCustomPlot"/>
-    <addaction name="action_4"/>
-    <addaction name="action_5"/>
+    <addaction name="acGraph"/>
+    <addaction name="acQt"/>
+    <addaction name="acQCustomPlot"/>
+    <addaction name="acGNU"/>
+    <addaction name="acDev"/>
    </widget>
    <addaction name="menu_2"/>
   </widget>
@@ -74,20 +74,20 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>242</width>
-     <height>628</height>
+     <width>260</width>
+     <height>633</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>242</width>
-     <height>628</height>
+     <width>260</width>
+     <height>633</height>
     </size>
    </property>
    <property name="font">
     <font>
-     <family>Noto Sans UI</family>
-     <pointsize>10</pointsize>
+     <family>DejaVu Sans</family>
+     <pointsize>9</pointsize>
      <stylestrategy>PreferDefault</stylestrategy>
      <kerning>true</kerning>
     </font>
@@ -108,22 +108,22 @@
     <widget class="QLabel" name="label_8">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>50</x>
        <y>0</y>
-       <width>239</width>
-       <height>150</height>
+       <width>141</width>
+       <height>121</height>
       </rect>
      </property>
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
      <property name="minimumSize">
       <size>
-       <width>239</width>
-       <height>150</height>
+       <width>0</width>
+       <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -134,8 +134,8 @@
      </property>
      <property name="font">
       <font>
-       <family>Noto Sans UI</family>
-       <pointsize>10</pointsize>
+       <family>DejaVu Sans</family>
+       <pointsize>9</pointsize>
        <stylestrategy>PreferDefault</stylestrategy>
        <kerning>true</kerning>
       </font>
@@ -153,7 +153,7 @@
       <pixmap resource="ares.qrc">:/Emblem_NSTU_orange_r.png</pixmap>
      </property>
      <property name="scaledContents">
-      <bool>false</bool>
+      <bool>true</bool>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -172,27 +172,27 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>150</y>
-       <width>239</width>
-       <height>231</height>
+       <y>120</y>
+       <width>251</width>
+       <height>261</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>239</width>
-       <height>0</height>
+       <width>251</width>
+       <height>261</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>239</width>
-       <height>240</height>
+       <width>251</width>
+       <height>261</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <family>Noto Sans UI</family>
-       <pointsize>10</pointsize>
+       <family>DejaVu Sans</family>
+       <pointsize>9</pointsize>
        <stylestrategy>PreferDefault</stylestrategy>
        <kerning>true</kerning>
       </font>
@@ -204,15 +204,15 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>159</y>
+        <y>190</y>
         <width>141</width>
         <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -232,8 +232,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -253,8 +253,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -274,8 +274,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -284,19 +284,19 @@
        <string>Коэффициент трения</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_2">
+     <widget class="QCheckBox" name="cbPhyz">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>130</y>
+        <y>161</y>
         <width>161</width>
         <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -308,53 +308,83 @@
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox">
+     <widget class="QDoubleSpinBox" name="sbMass">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>160</y>
+        <x>170</x>
+        <y>190</y>
         <width>75</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
       </property>
       <property name="maximum">
        <double>100.000000000000000</double>
       </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+     <widget class="QDoubleSpinBox" name="sbLength">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>30</y>
+        <x>170</x>
+        <y>29</y>
         <width>75</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="maximum">
+       <double>100.000000000000000</double>
+      </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_3">
+     <widget class="QDoubleSpinBox" name="sbDCoeff">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>60</y>
+        <x>170</x>
+        <y>59</y>
         <width>75</width>
         <height>31</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
       </property>
       <property name="maximum">
        <double>10.000000000000000</double>
       </property>
+      <property name="singleStep">
+       <double>0.100000000000000</double>
+      </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_5">
+     <widget class="QDoubleSpinBox" name="sbAngle">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>90</y>
+        <x>170</x>
+        <y>89</y>
         <width>75</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="decimals">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="minimum">
        <double>-179.000000000000000</double>
@@ -367,37 +397,95 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>189</y>
+        <y>220</y>
         <width>141</width>
         <height>31</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
       </property>
       <property name="text">
-       <string>Время эксперимента [с]</string>
+       <string>Δt [с]</string>
       </property>
      </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_4">
+     <widget class="QDoubleSpinBox" name="sbDelta">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>190</y>
+        <x>170</x>
+        <y>220</y>
         <width>75</width>
         <height>31</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="decimals">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="maximum">
-       <double>100.000000000000000</double>
+       <double>1.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.100000000000000</double>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>161</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="text">
+       <string>Начальный импульс [Тс]</string>
+      </property>
+     </widget>
+     <widget class="QDoubleSpinBox" name="sbImpulse">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>119</y>
+        <width>75</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="decimals">
+       <number>2</number>
+      </property>
+      <property name="minimum">
+       <double>-10.000000000000000</double>
+      </property>
+      <property name="maximum">
+       <double>10.000000000000000</double>
+      </property>
+      <property name="singleStep">
+       <double>0.100000000000000</double>
       </property>
      </widget>
     </widget>
@@ -406,26 +494,26 @@
       <rect>
        <x>0</x>
        <y>380</y>
-       <width>239</width>
+       <width>251</width>
        <height>221</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
-       <width>239</width>
-       <height>0</height>
+       <width>251</width>
+       <height>221</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>239</width>
-       <height>225</height>
+       <width>251</width>
+       <height>221</height>
       </size>
      </property>
      <property name="font">
       <font>
-       <family>Noto Sans UI</family>
-       <pointsize>10</pointsize>
+       <family>DejaVu Sans</family>
+       <pointsize>9</pointsize>
        <stylestrategy>PreferDefault</stylestrategy>
        <kerning>true</kerning>
       </font>
@@ -433,7 +521,7 @@
      <property name="title">
       <string>Управление и данные</string>
      </property>
-     <widget class="QLCDNumber" name="lcdNumber">
+     <widget class="QLCDNumber" name="dtTime">
       <property name="geometry">
        <rect>
         <x>10</x>
@@ -444,8 +532,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -460,19 +548,19 @@
        <enum>QLCDNumber::Flat</enum>
       </property>
      </widget>
-     <widget class="QSlider" name="horizontalSlider">
+     <widget class="QSlider" name="hsSpeed">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>80</y>
-        <width>171</width>
+        <width>201</width>
         <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -490,19 +578,19 @@
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="lSpeed">
       <property name="geometry">
        <rect>
-        <x>190</x>
+        <x>220</x>
         <y>80</y>
         <width>31</width>
-        <height>21</height>
+        <height>20</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -522,8 +610,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -537,26 +625,26 @@
        <rect>
         <x>10</x>
         <y>100</y>
-        <width>111</width>
+        <width>151</width>
         <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
       </property>
       <property name="text">
-       <string>Энергия системы</string>
+       <string>Энергия системы [Дж?]</string>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="lcdNumber_2">
+     <widget class="QLCDNumber" name="dtEnergy">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>170</x>
         <y>100</y>
         <width>71</width>
         <height>20</height>
@@ -564,8 +652,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -588,26 +676,26 @@
        <rect>
         <x>10</x>
         <y>130</y>
-        <width>141</width>
+        <width>151</width>
         <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
       </property>
       <property name="text">
-       <string>Собственная частота</string>
+       <string>Собственная частота [Гц^-1]</string>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="lcdNumber_3">
+     <widget class="QLCDNumber" name="dtFreq">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>170</x>
         <y>130</y>
         <width>71</width>
         <height>20</height>
@@ -615,8 +703,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -639,26 +727,26 @@
        <rect>
         <x>10</x>
         <y>160</y>
-        <width>91</width>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
       </property>
       <property name="text">
-       <string>Угол [град]</string>
+       <string>Отклонение [град]</string>
       </property>
      </widget>
-     <widget class="QLCDNumber" name="lcdNumber_4">
+     <widget class="QLCDNumber" name="dtAngle">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>170</x>
         <y>160</y>
         <width>71</width>
         <height>20</height>
@@ -666,8 +754,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -696,8 +784,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -706,10 +794,10 @@
        <string>Время [с]</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="pbStart">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>10</x>
         <y>190</y>
         <width>71</width>
         <height>21</height>
@@ -717,8 +805,8 @@
       </property>
       <property name="font">
        <font>
-        <family>Noto Sans UI</family>
-        <pointsize>10</pointsize>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
@@ -727,44 +815,84 @@
        <string>Старт</string>
       </property>
      </widget>
-     <zorder>lcdNumber</zorder>
-     <zorder>horizontalSlider</zorder>
-     <zorder>label</zorder>
-     <zorder>label_2</zorder>
-     <zorder>label_3</zorder>
-     <zorder>lcdNumber_2</zorder>
-     <zorder>label_4</zorder>
-     <zorder>lcdNumber_3</zorder>
-     <zorder>label_5</zorder>
-     <zorder>lcdNumber_4</zorder>
-     <zorder>label_6</zorder>
-     <zorder>pushButton</zorder>
-     <zorder>groupBox</zorder>
-     <zorder>label_8</zorder>
+     <widget class="QPushButton" name="pbReload">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>190</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+        <stylestrategy>PreferDefault</stylestrategy>
+        <kerning>true</kerning>
+       </font>
+      </property>
+      <property name="text">
+       <string>Сброс</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QLCDNumber" name="dtTime_2">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>30</y>
+       <width>141</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>9</pointsize>
+       <stylestrategy>PreferDefault</stylestrategy>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::WinPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="smallDecimalPoint">
+      <bool>true</bool>
+     </property>
+     <property name="digitCount">
+      <number>12</number>
+     </property>
+     <property name="segmentStyle">
+      <enum>QLCDNumber::Flat</enum>
+     </property>
     </widget>
    </widget>
   </widget>
-  <action name="action_4">
+  <action name="acGNU">
    <property name="text">
     <string>О лицензии</string>
    </property>
   </action>
-  <action name="action_5">
+  <action name="acDev">
    <property name="text">
     <string>Разработчики</string>
    </property>
   </action>
-  <action name="action_Qt">
+  <action name="acQt">
    <property name="text">
     <string>О &amp;Qt</string>
    </property>
   </action>
-  <action name="action_6">
+  <action name="acGraph">
    <property name="text">
     <string>Графики</string>
    </property>
   </action>
-  <action name="action_QCustomPlot">
+  <action name="acQCustomPlot">
    <property name="text">
     <string>О Q&amp;CustomPlot</string>
    </property>
@@ -781,22 +909,5 @@
  <resources>
   <include location="ares.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>horizontalSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>676</x>
-     <y>373</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>786</x>
-     <y>373</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

@@ -8,16 +8,21 @@ void Phyzxmodel::setUp(){
     isReady();
     if (!m_ready)
         throw 1;
-    natutal_freq = swing_period = 2 * PI * sqrt(rod_length + G) * (1 + 1/4 * pow(sin(toRad(theta_current) / 2), 2)
-                                                                   + 9/64*pow(sin(toRad(theta_current) / 2), 4));
-    RK4Worker = new RungeKutta4();
-    RK4Worker->setUp(0.1, damping_factor / (2 * (object_mass + rod_mass)));
-    preserved_energy = 1 / 2 * (1.42 + sin(theta_zero) * rod_length) - cos(0 + cos(theta_zero) * rod_length);
+    m_dirty = false;
+    /*natural_freq = swing_period = 2 * PI * sqrt(rod_length + G) *
+            (1 + 1/4 * pow(sin(RAD(theta_current) / 2), 2)
+            + 9/64*pow(sin(RAD(theta_current) / 2), 4));*/
+    natural_freq = sqrt(G/rod_length);
 }
 
-void Phyzxmodel::setTht0(double t_z){
+void Phyzxmodel::setImp(float impulse){
     m_dirty = true;
-    theta_zero = t_z;
+    data.setY(impulse);
+}
+
+void Phyzxmodel::setTht0(float t_z){
+    m_dirty = true;
+    data.setX(t_z);
 }
 
 void Phyzxmodel::setRMass(double n_m){
@@ -27,7 +32,9 @@ void Phyzxmodel::setRMass(double n_m){
 
 void Phyzxmodel::setLen(double n_l){
     m_dirty = true;
-    rod_length = n_l;
+//    rod_length = n_l;
+
+    m_coeff = G / n_l;
 }
 
 void Phyzxmodel::setSpd(double n_s){
@@ -42,25 +49,18 @@ void Phyzxmodel::setComp(COMPOUND n_c){
 
 void Phyzxmodel::setDamp(double n_d){
     m_dirty = true;
-    RK4Worker->setUp(0.1, n_d);
-    damping_factor = n_d;
+    damping_factor = n_d / (object_mass * rod_length * rod_length);
+    if (p_type == NONE)
+        damping_factor *= (9.0 / 4.0);
 }
 
 void Phyzxmodel::currentTime(double t_a){
-    if (!m_dirty && m_ready){
-    data = RK4Worker->RK4Step(t_a);
-    angleChanged(data.x());
-    }
-}
-
-void Phyzxmodel::angleChanged(float newval){
-    //emit data.x();
-    emit newval;
+    current_time = t_a;
 }
 
 ///our alpha and omega, gives us angle deviation from (0, length) line
 double Phyzxmodel::getTheta(){
-    return theta_current;
+    return data.x();
 }
 
 COMPOUND Phyzxmodel::getComp(){
@@ -74,7 +74,8 @@ void Phyzxmodel::updateData(){
     if (rod_mass == -1 || rod_length == -1 || simulation_speed == -1)
         throw 0; //we need these values before evaluating data
     swing_period = 2 * PI * sqrt(rod_length + G) *
-            (1 + 1/4 * pow(sin(toRad(theta_current) / 2), 2) + 9/64*pow(sin(toRad(theta_current) / 2), 4));
+            (1 + 1/4 * pow(sin(RAD(data.x()) / 2), 2) +
+             9/64*pow(sin(RAD(data.x()) / 2), 4));
 }
 
 double Phyzxmodel::getKEnergy(){
@@ -90,11 +91,20 @@ double Phyzxmodel::getPeriod(){
 }
 
 void Phyzxmodel::isReady(){
-    if (m_dirty)
-        delete RK4Worker;
-    if (rod_length != -1 && rod_mass != -1 &&
-            simulation_speed != -1 && theta_zero != -1){
-        m_dirty = false;
-        m_ready = true;
-    }
+}
+
+QVector2D Phyzxmodel::RK4Step(QVector2D y, double t){
+    QVector2D temp;
+    temp.setX(y[0]);
+    temp.setY(-damping_factor * y[1] - std::sin(y[0]));
+    return temp;
+}
+
+void Phyzxmodel::RK4(){
+    QVector2D rk[4];
+    rk[0] = RK4Step(data, current_time) * dt;
+    rk[1] = RK4Step(data + 0.5 * rk[0], current_time + 0.5 * dt) * dt;
+    rk[2] = RK4Step(data + 0.5 * rk[1], current_time + 0.5 * dt) * dt;
+    rk[3] = RK4Step(data + rk[2], current_time + dt) * dt;
+    data += (rk[0] + rk[1] * 2 + rk[2] * 2 + rk[3]) / 6.0;
 }

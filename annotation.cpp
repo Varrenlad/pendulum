@@ -6,6 +6,7 @@ Annotation::Annotation(QWidget *parent) :
     ui(new Ui::Annotation)
 {
     ui->setupUi(this);
+    QTimer::singleShot(60000, this, SLOT(close()));
     connect(ui->label, SIGNAL(destroyed()), SLOT(close()));
     //старт по центру
     QPoint center = QApplication::desktop()->availableGeometry().center();
@@ -15,28 +16,17 @@ Annotation::Annotation(QWidget *parent) :
         this->move(center);
     //или в точке 0, 0
     else this->move(QApplication::desktop()->availableGeometry().topLeft());
+    this->activateWindow();
 }
 
 Annotation::~Annotation(){
     delete ui;
 }
 
-void Annotation::timerEvent(QTimerEvent *ev){
-    static uint32_t i = 0;
-    ++i;
-    if (is_key_down || i == 500000 || !this->isVisible()){
-        this->hide();
-        killTimer(ev->timerId());
-    }
-    else if (!this->isActiveWindow()){
-        this->activateWindow();
-    }
-}
-
 void Annotation::keyPressEvent(QKeyEvent *){
-    is_key_down = true;
+    delete ui->label;
 }
 
 void Annotation::mousePressEvent(QMouseEvent *){
-    is_key_down = true;
+    delete ui->label;
 }
