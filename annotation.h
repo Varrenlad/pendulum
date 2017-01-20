@@ -19,7 +19,6 @@ public:
     explicit Annotation(QWidget *parent = 0);
     ~Annotation();
 private:
-    bool is_key_down = false;
     void mousePressEvent(QMouseEvent *ev);
     void keyPressEvent(QKeyEvent *ev);
     Ui::Annotation *ui;

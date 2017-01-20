@@ -14,5 +14,6 @@ int main(int argc, char *argv[])
     Annotation anno;
     anno.show();
     w.show();
+    anno.activateWindow();
     return a.exec();
 }

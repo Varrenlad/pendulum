@@ -70,7 +70,6 @@ private:
     void mouseReleaseEvent(QMouseEvent*);
     void wheelEvent(QWheelEvent*);
     void keyPressEvent(QKeyEvent*);
-    void timerEvent(QTimerEvent*); // обработка события таймера
 public:
     explicit Scene(QWidget *parent = 0);
     ~Scene();

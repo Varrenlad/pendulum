@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "phyzxmodel.h"
+#include "graphs.h"
 #include <QMainWindow>
 #include <QFrame>
 
@@ -25,7 +26,7 @@ signals:
 
 private:
     Ui::MainWindow *ui;
-    Phyzxmodel phyz;
+    Graphs *frame;
 
 };
 

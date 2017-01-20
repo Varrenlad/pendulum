@@ -10,8 +10,20 @@
     <height>634</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>463</width>
+    <height>634</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>9999999</width>
+    <height>9999999</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Графики</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
@@ -22,12 +34,24 @@
      <height>631</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <family>DejaVu Sans</family>
+     <pointsize>9</pointsize>
+    </font>
+   </property>
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <property name="sizeConstraint">
      <enum>QLayout::SetMaximumSize</enum>
     </property>
     <item>
      <widget class="QGroupBox" name="groupBox">
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="title">
        <string>Энергия системы</string>
       </property>
@@ -40,11 +64,23 @@
          <height>181</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
       </widget>
      </widget>
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox_2">
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="title">
        <string>Период колебаний</string>
       </property>
@@ -57,22 +93,40 @@
          <height>181</height>
         </rect>
        </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
       </widget>
      </widget>
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox_3">
+      <property name="font">
+       <font>
+        <family>DejaVu Sans</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="title">
        <string>Угол отклонения</string>
       </property>
       <widget class="QCustomPlot" name="widget_3" native="true">
        <property name="geometry">
         <rect>
-         <x>0</x>
+         <x>10</x>
          <y>20</y>
-         <width>451</width>
-         <height>181</height>
+         <width>441</width>
+         <height>171</height>
         </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>DejaVu Sans</family>
+         <pointsize>9</pointsize>
+        </font>
        </property>
       </widget>
      </widget>

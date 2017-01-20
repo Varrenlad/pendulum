@@ -16,7 +16,6 @@ Annotation::Annotation(QWidget *parent) :
         this->move(center);
     //или в точке 0, 0
     else this->move(QApplication::desktop()->availableGeometry().topLeft());
-    this->activateWindow();
 }
 
 Annotation::~Annotation(){

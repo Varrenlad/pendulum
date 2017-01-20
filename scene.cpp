@@ -9,7 +9,9 @@ GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
 GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
 Scene::Scene(QWidget *parent){
-    ltime.Update();
+    auto pTimer = new QTimer(this);
+    connect(pTimer, SIGNAL(timeout()), this, SLOT(update()));
+    pTimer->start(1000 / 60.0);
     Default();
 }
 
@@ -27,10 +29,6 @@ Scene::~Scene(){
     delete stand;
     delete swing;
     delete shaft;
-}
-
-void Scene::timerEvent(QTimerEvent *) {
-    update();
 }
 
 void Scene::initializeGL(){
@@ -130,17 +128,6 @@ void Scene::paintGL() {
      glRotatef(zRot, 0.0f, 0.0f, 1.0f);
      glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
      glTranslatef(0.0f, 0.75f, 0.0f);
-
-
-     ++nbFrames;
-     if (ltime.Elapsed() >= 1.0){ // If last print was more than 1 sec ago
-         // print and reset timer
-         emit spf((1000.0/double(nbFrames)));
-         nbFrames = 0;
-         ltime.Update();
-     }
-
-
 	 draw();
 }
 

@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     QTimer tick;
+    frame = new Graphs();
+    frame->show();
+    frame->setHidden(true);
     ui->setupUi(this);
     connect(ui->hsSpeed, SIGNAL(valueChanged(int)),
             ui->lSpeed, SLOT(setNum(int)));
@@ -33,9 +36,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->openGLWidget, SIGNAL(spf(double)),
             ui->dtTime_2, SLOT(display(double)));
+
+    connect(ui->acGraph, SIGNAL(triggered(bool)),
+            frame, SLOT(setHidden(bool)));
 }
 
 MainWindow::~MainWindow(){
+    delete frame;
     delete ui;
 }
 
