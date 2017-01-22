@@ -70,7 +70,7 @@ void GLobj::LoadMesh(QString &filename) {
 	Vertices.clear();
 	UVs.clear();
 	Normales.clear();
-	for (size_t i = 0; i < Faces.size(); ++i) {
+    for (auto i = 0; i < Faces.size(); ++i) {
 		Vertices.append(Faces[i].Vertices);
 		UVs.append(Faces[i].UVs);
 		Normales.append(Faces[i].Normales);

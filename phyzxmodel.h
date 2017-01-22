@@ -7,7 +7,6 @@
 
 #define PI 3.14159265359
 #define G 9.8145 //not exact data, but good enough for Novosibirsk
-#define RAD(x) (x*0.01745329251)
 
 enum COMPOUND{NONE = 0, BALL};
 
@@ -43,8 +42,7 @@ private:
     void RK4();
     QVector2D data; //[0] is theta, angle and [1] is omega, angular velocity
     //QVector<QPoint> graph;
-    double rod_length{-1}, rod_mass{-1}, simulation_speed{-1},
-    object_mass{}, damping_factor{}, m_coeff{},
+    double rod_length{100}, rod_mass{100}, damping_factor{3}, m_coeff{G / 100},
     preserved_energy{}, kinetic_energy{}, swing_period{},
     natural_freq{}, current_time;
     COMPOUND p_type;

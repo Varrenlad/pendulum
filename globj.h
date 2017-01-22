@@ -70,8 +70,6 @@ public:
     QVector<QVector2D>& mUVs();
     QVector<Face>& mFaces();
     void LoadMesh(QString &mesh);
-    //void LoadTexture(QString &texture);
-    //void TextureSwitch(); //drops texture drawing to save load
 private:
     QVector<QVector3D> Vertices;
     QVector<QVector3D> Normales;
@@ -87,10 +85,6 @@ private:
     QVector3D m_rotation = {0.0f, 0.0f, 0.0f};
     bool rotate_on = false;
     bool textures_on = false;
-    float angle = 0.0f;
-   // QImage textureImage;
-   // void LoadMTL(QString filename, QString MTLname);
-   // void LoadTexture();
 };
 
 #endif // GLOBJ_H

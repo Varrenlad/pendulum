@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    QTimer tick;
+    auto tick = new QTimer(this);
     frame = new Graphs();
     frame->show();
     frame->setHidden(true);
@@ -20,12 +20,13 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->openGLWidget, SLOT(setImpulse(double)));
     connect(ui->sbMass, SIGNAL(valueChanged(double)),
             ui->openGLWidget, SLOT(setMass(double)));
-    connect(ui->pbStart, SIGNAL(pressed()),
-            ui->openGLWidget, SLOT(toggleRunning()));
+
     connect(ui->sbLength, SIGNAL(valueChanged(double)),
             ui->openGLWidget, SLOT(setLength(double)));
     connect(ui->sbDCoeff, SIGNAL(valueChanged(double)),
             ui->openGLWidget, SLOT(setDamping(double)));
+    connect(ui->sbDelta, SIGNAL(valueChanged(double)),
+            ui->openGLWidget, SLOT(setDelta(double)));
 
     connect(ui->openGLWidget, SIGNAL(diffAngle(double)),
             ui->dtAngle, SLOT(display(double)));
@@ -34,11 +35,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->openGLWidget, SIGNAL(diffFreq(double)),
             ui->dtFreq, SLOT(display(double)));
 
-    connect(ui->openGLWidget, SIGNAL(spf(double)),
-            ui->dtTime_2, SLOT(display(double)));
-
     connect(ui->acGraph, SIGNAL(triggered(bool)),
             frame, SLOT(setHidden(bool)));
+
+    connect(ui->pbStart, SIGNAL(clicked(bool)),
+            ui->openGLWidget, SLOT(toggleRunning(bool)));
+
+    tick->start(100);
+    connect(tick, SIGNAL(timeout()),
+            ui->openGLWidget, SLOT(run()));
+    if (!tick->isActive() || tick->isSingleShot()){
+        throw 1;
+    }
+
 }
 
 MainWindow::~MainWindow(){

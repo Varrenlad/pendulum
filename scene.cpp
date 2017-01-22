@@ -8,7 +8,7 @@ GLfloat light_diffuse[] = {0.5f, 0.5f, 0.5f, 0.0f};
 GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
 GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
-Scene::Scene(QWidget *parent){
+Scene::Scene(QWidget *){
     auto pTimer = new QTimer(this);
     connect(pTimer, SIGNAL(timeout()), this, SLOT(update()));
     pTimer->start(1000 / 60.0);
@@ -383,12 +383,27 @@ void Scene::deleteVBO(GLobj &to_remove) {
 	glDeleteBuffers(3, buffers);
 }
 
-void Scene::toggleRunning(){
+void Scene::run(){
+    //throw 2;
+    if (isRunning) {
+        time += dt;
+        //model.currentTime(time);
+        //for (auto i = 0; i < 5; ++i){
+            model.updateData();
+        //}
+        swing->setRotation(QVector3D(model.getTheta(), 0.0f, 0.0f));
+
+    }
+    emit diffAngle(model.getTheta());
+    emit diffFreq(model.getPeriod());
 
 }
 
-void Scene::setInterrupted(){
-
+void Scene::toggleRunning(bool){
+    isRunning = !isRunning;
+    if (isRunning){
+        model.setUp();
+    }
 }
 
 void Scene::setAngle(double new_angle){

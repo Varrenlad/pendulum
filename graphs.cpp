@@ -6,6 +6,8 @@ Graphs::Graphs(QWidget *parent) :
     ui(new Ui::Graphs)
 {
     ui->setupUi(this);
+    this->setLocale(QLocale(QLocale::Russian, QLocale::RussianFederation));
+
 }
 
 Graphs::~Graphs()

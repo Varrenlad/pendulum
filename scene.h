@@ -26,6 +26,7 @@ private:
     int nbFrames = 0;
 
     GLobj *lowershell, *plank, *shaft, *stand, *swing, *uppershell;
+    bool isRunning = false;
 
     GLfloat xRot;
     GLfloat yRot;
@@ -65,11 +66,11 @@ private:
     void resizeGL(int, int) Q_DECL_OVERRIDE;
     void paintGL() Q_DECL_OVERRIDE;
     void teardownGL();
-    void mousePressEvent(QMouseEvent*);
-    void mouseMoveEvent(QMouseEvent*);
-    void mouseReleaseEvent(QMouseEvent*);
-    void wheelEvent(QWheelEvent*);
-    void keyPressEvent(QKeyEvent*);
+    void mousePressEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent*) Q_DECL_OVERRIDE;
+    void wheelEvent(QWheelEvent*) Q_DECL_OVERRIDE;
+    void keyPressEvent(QKeyEvent*) Q_DECL_OVERRIDE;
 public:
     explicit Scene(QWidget *parent = 0);
     ~Scene();
@@ -77,10 +78,9 @@ signals:
     void diffEnergy(double current_energy);
     void diffFreq(double const_freq);
     void diffAngle(double current_angle);
-    void spf(double ms);
 public slots:
-    void toggleRunning();
-    void setInterrupted();
+    void toggleRunning(bool);
+    void run();
     void setAngle(double new_angle);
     void setMass(double new_mass);
     void setImpulse(double new_impulse);
