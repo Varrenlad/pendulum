@@ -388,9 +388,7 @@ void Scene::run(){
     if (isRunning) {
         time += dt;
         //model.currentTime(time);
-        //for (auto i = 0; i < 5; ++i){
-            model.updateData();
-        //}
+        model.updateData();
         swing->setRotation(QVector3D(model.getTheta(), 0.0f, 0.0f));
 
     }

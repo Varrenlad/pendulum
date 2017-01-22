@@ -24,6 +24,10 @@ void Phyzxmodel::setUp(){
             (1 + 1/4 * pow(sin(RAD(theta_current) / 2), 2)
             + 9/64*pow(sin(RAD(theta_current) / 2), 4));*/
     natural_freq = sqrt(G/rod_length);
+    if (p_type = BALL)
+        omega = sqrt(5.0 * G * (rod_length + obj_rad)/2.0 * obj_rad * obj_rad);
+    else
+        omega = sqrt(3.0 * G / rod_length);
 }
 
 void Phyzxmodel::setImp(float impulse){
@@ -60,7 +64,7 @@ void Phyzxmodel::setComp(COMPOUND n_c){
 
 void Phyzxmodel::setDamp(double n_d){
     m_dirty = true;
-    damping_factor = n_d / (rod_mass * rod_length * rod_length);
+    damping_factor = n_d * 100 / (rod_mass * rod_length * rod_length);
     if (p_type == NONE)
         damping_factor *= (9.0 / 4.0);
 }
@@ -114,7 +118,7 @@ void Phyzxmodel::isReady(){
 QVector2D Phyzxmodel::RK4Step(QVector2D y, double t){
     QVector2D temp;
     temp.setX(y.y());
-    temp.setY(-damping_factor * y.y() - std::sin(y.x()));
+    temp.setY(-2 * damping_factor * y.y() - omega * std::sin(y.x()));
     return temp;
 }
 

@@ -44,7 +44,7 @@ private:
     //QVector<QPoint> graph;
     double rod_length{100}, rod_mass{100}, damping_factor{3}, m_coeff{G / 100},
     preserved_energy{}, kinetic_energy{}, swing_period{},
-    natural_freq{}, current_time;
+    natural_freq{}, current_time, omega, obj_rad{1};
     COMPOUND p_type;
     bool m_dirty = true, m_ready = false;
     double dt = 0.1;

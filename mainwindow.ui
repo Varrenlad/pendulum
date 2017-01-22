@@ -218,7 +218,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Масса [кг^-2]</string>
+       <string>Масса [кг^-1]</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_10">
@@ -239,7 +239,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Длина нити [м^-2]</string>
+       <string>Длина нити [м^-1]</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_13">
@@ -327,7 +327,7 @@
        <double>400.000000000000000</double>
       </property>
       <property name="value">
-       <double>100.000000000000000</double>
+       <double>10.000000000000000</double>
       </property>
      </widget>
      <widget class="QDoubleSpinBox" name="sbLength">
@@ -368,13 +368,13 @@
        </font>
       </property>
       <property name="maximum">
-       <double>10.000000000000000</double>
+       <double>100.000000000000000</double>
       </property>
       <property name="singleStep">
        <double>0.100000000000000</double>
       </property>
       <property name="value">
-       <double>3.000000000000000</double>
+       <double>90.000000000000000</double>
       </property>
      </widget>
      <widget class="QDoubleSpinBox" name="sbAngle">
