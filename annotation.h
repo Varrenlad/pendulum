@@ -17,6 +17,7 @@ class Annotation : public QFrame
 
 public:
     explicit Annotation(QWidget *parent = 0);
+    void reloadSplash(QImage &new_splash);
     ~Annotation();
 private:
     void mousePressEvent(QMouseEvent *ev);

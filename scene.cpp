@@ -9,8 +9,13 @@ GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
 GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
 Scene::Scene(QWidget *){
+	QSurfaceFormat format;
+	format.setVersion(2, 0);
+	format.setProfile(QSurfaceFormat::CompatibilityProfile);
+	QSurfaceFormat::setDefaultFormat(format);
     auto pTimer = new QTimer(this);
-    connect(pTimer, SIGNAL(timeout()), this, SLOT(update()));
+    connect(pTimer,SIGNAL(timeout()), this, SLOT(update()));
+    connect(pTimer,SIGNAL(timeout()), this, SLOT(run()));
     pTimer->start(1000 / 60.0);
     Default();
 }
@@ -34,13 +39,6 @@ Scene::~Scene(){
 void Scene::initializeGL(){
     initializeOpenGLFunctions();
     connect(this, SIGNAL(frameSwapped()), this, SLOT(update()));
-    QSurfaceFormat format;
-    format.setDepthBufferSize(24);
-    format.setStencilBufferSize(8);
-    format.setVersion(1, 1);
-    format.setSamples(8);
-    format.setProfile(QSurfaceFormat::CoreProfile);
-    this->context()->setFormat(format);
 
     wood = new QOpenGLTexture(QImage(":/textures/mNt/wood.jpg"));
     wood->setMinificationFilter(QOpenGLTexture::LinearMipMapLinear);

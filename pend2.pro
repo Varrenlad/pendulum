@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += opengl widgets
 TARGET = pend2
 TEMPLATE = app
 
-CONFIG += c++11
+CONFIG += c++11 staticlib
 
 SOURCES += main.cpp\
         mainwindow.cpp \

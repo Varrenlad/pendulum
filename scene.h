@@ -9,9 +9,8 @@
 //Qt before 5.5? Never heard of
 #include <QTimer>
 #include <QtOpenGL/QtOpenGL>
-#include <QOpenGLFunctions_1_1>
+#include <QOpenGLFunctions_2_0>
 #include <QOpenGLTexture>
-#include <QOpenGLShaderProgram>
 #include <QVector>
 #include <QTextStream>
 #include <QVector3D>

@@ -38,16 +38,16 @@ public:
 
 private:
     void isReady();
-    QVector2D RK4Step(QVector2D y, double t);
+    QVector2D RK4Step(QVector2D y);
     void RK4();
     QVector2D data; //[0] is theta, angle and [1] is omega, angular velocity
     //QVector<QPoint> graph;
-    double rod_length{100}, rod_mass{100}, damping_factor{3}, m_coeff{G / 100},
+    double rod_length{100}, rod_mass{10}, damping_factor{3000 / 100000}, m_coeff{G / 100},
     preserved_energy{}, kinetic_energy{}, swing_period{},
     natural_freq{}, current_time, omega, obj_rad{1};
-    COMPOUND p_type;
+    COMPOUND p_type{BALL};
     bool m_dirty = true, m_ready = false;
-    double dt = 0.1;
+    double dt = 0.016;
 };
 
 #endif // PHYZXMODEL_H

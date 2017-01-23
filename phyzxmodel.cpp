@@ -24,7 +24,7 @@ void Phyzxmodel::setUp(){
             (1 + 1/4 * pow(sin(RAD(theta_current) / 2), 2)
             + 9/64*pow(sin(RAD(theta_current) / 2), 4));*/
     natural_freq = sqrt(G/rod_length);
-    if (p_type = BALL)
+    if (p_type == BALL)
         omega = sqrt(5.0 * G * (rod_length + obj_rad)/2.0 * obj_rad * obj_rad);
     else
         omega = sqrt(3.0 * G / rod_length);
@@ -115,7 +115,7 @@ double Phyzxmodel::getPeriod(){
 void Phyzxmodel::isReady(){
 }
 
-QVector2D Phyzxmodel::RK4Step(QVector2D y, double t){
+QVector2D Phyzxmodel::RK4Step(QVector2D y){
     QVector2D temp;
     temp.setX(y.y());
     temp.setY(-2 * damping_factor * y.y() - omega * std::sin(y.x()));
@@ -124,10 +124,10 @@ QVector2D Phyzxmodel::RK4Step(QVector2D y, double t){
 
 void Phyzxmodel::RK4(){
     QVector2D rk[4];
-    rk[0] = RK4Step(data, current_time) * dt;
-    rk[1] = RK4Step(data + 0.5 * rk[0], current_time + 0.5 * dt) * dt;
-    rk[2] = RK4Step(data + 0.5 * rk[1], current_time + 0.5 * dt) * dt;
-    rk[3] = RK4Step(data + rk[2], current_time + dt) * dt;
+    rk[0] = RK4Step(data) * dt;
+    rk[1] = RK4Step(data + 0.5 * rk[0]) * dt;
+    rk[2] = RK4Step(data + 0.5 * rk[1]) * dt;
+    rk[3] = RK4Step(data + rk[2]) * dt;
     data += (rk[0] + rk[1] * 2 + rk[2] * 2 + rk[3]) / 6.0;
 }
 

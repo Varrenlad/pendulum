@@ -41,12 +41,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pbStart, SIGNAL(clicked(bool)),
             ui->openGLWidget, SLOT(toggleRunning(bool)));
 
-    tick->start(100);
-    connect(tick, SIGNAL(timeout()),
-            ui->openGLWidget, SLOT(run()));
-    if (!tick->isActive() || tick->isSingleShot()){
-        throw 1;
-    }
+    //tick->start(16.6);
+    //connect(tick, SIGNAL(timeout()),
+    //        ui->openGLWidget, SLOT(run()));
+
 
 }
 

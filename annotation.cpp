@@ -1,5 +1,6 @@
 #include "annotation.h"
 #include "ui_annotation.h"
+#include <QLabel>
 
 Annotation::Annotation(QWidget *parent) :
     QFrame(parent),
@@ -16,6 +17,11 @@ Annotation::Annotation(QWidget *parent) :
         this->move(center);
     //или в точке 0, 0
     else this->move(QApplication::desktop()->availableGeometry().topLeft());
+}
+
+void Annotation::reloadSplash(QImage &new_splash){
+    ui->label->clear();
+    ui->label->setPixmap(QPixmap::fromImage(new_splash));
 }
 
 Annotation::~Annotation(){
