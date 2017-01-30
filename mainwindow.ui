@@ -50,20 +50,27 @@
      <x>0</x>
      <y>0</y>
      <width>883</width>
-     <height>21</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_2">
     <property name="title">
-     <string>Информация</string>
+     <string>Графики</string>
     </property>
-    <addaction name="acGraph"/>
-    <addaction name="acQt"/>
-    <addaction name="acQCustomPlot"/>
-    <addaction name="acGNU"/>
-    <addaction name="acDev"/>
+    <addaction name="gPhaze"/>
+    <addaction name="gAngle"/>
+    <addaction name="gEnergy"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Помощь</string>
+    </property>
+    <addaction name="aProg"/>
+    <addaction name="aGNUGPL"/>
+    <addaction name="aQt"/>
    </widget>
    <addaction name="menu_2"/>
+   <addaction name="menu"/>
   </widget>
   <widget class="QDockWidget" name="dockWidget">
    <property name="sizePolicy">
@@ -402,58 +409,6 @@
        <double>179.000000000000000</double>
       </property>
      </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>220</y>
-        <width>141</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-        <pointsize>9</pointsize>
-        <stylestrategy>PreferDefault</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="text">
-       <string>Δt [с]</string>
-      </property>
-     </widget>
-     <widget class="QDoubleSpinBox" name="sbDelta">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>220</y>
-        <width>75</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-        <pointsize>9</pointsize>
-       </font>
-      </property>
-      <property name="decimals">
-       <number>4</number>
-      </property>
-      <property name="minimum">
-       <double>0.010000000000000</double>
-      </property>
-      <property name="maximum">
-       <double>1.000000000000000</double>
-      </property>
-      <property name="singleStep">
-       <double>0.100000000000000</double>
-      </property>
-      <property name="value">
-       <double>0.016600000000000</double>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_15">
       <property name="geometry">
        <rect>
@@ -534,7 +489,7 @@
       </font>
      </property>
      <property name="title">
-      <string>Управление и данные</string>
+      <string>Debug</string>
      </property>
      <widget class="QLCDNumber" name="dtTime">
       <property name="geometry">
@@ -633,108 +588,6 @@
       </property>
       <property name="text">
        <string>Скорость эмуляции</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_3">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>100</y>
-        <width>151</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-        <pointsize>9</pointsize>
-        <stylestrategy>PreferDefault</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="text">
-       <string>Энергия системы [Дж?]</string>
-      </property>
-     </widget>
-     <widget class="QLCDNumber" name="dtEnergy">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>100</y>
-        <width>71</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-        <pointsize>9</pointsize>
-        <stylestrategy>PreferDefault</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="smallDecimalPoint">
-       <bool>true</bool>
-      </property>
-      <property name="digitCount">
-       <number>6</number>
-      </property>
-      <property name="segmentStyle">
-       <enum>QLCDNumber::Flat</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>130</y>
-        <width>151</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-        <pointsize>9</pointsize>
-        <stylestrategy>PreferDefault</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="text">
-       <string>Собственная частота [Гц^-1]</string>
-      </property>
-     </widget>
-     <widget class="QLCDNumber" name="dtFreq">
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>130</y>
-        <width>71</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>DejaVu Sans</family>
-        <pointsize>9</pointsize>
-        <stylestrategy>PreferDefault</stylestrategy>
-        <kerning>true</kerning>
-       </font>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Plain</enum>
-      </property>
-      <property name="smallDecimalPoint">
-       <bool>true</bool>
-      </property>
-      <property name="digitCount">
-       <number>6</number>
-      </property>
-      <property name="segmentStyle">
-       <enum>QLCDNumber::Flat</enum>
       </property>
      </widget>
      <widget class="QLabel" name="label_5">
@@ -852,39 +705,6 @@
       </property>
      </widget>
     </widget>
-    <widget class="QLCDNumber" name="dtTime_2">
-     <property name="geometry">
-      <rect>
-       <x>100</x>
-       <y>30</y>
-       <width>141</width>
-       <height>31</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>DejaVu Sans</family>
-       <pointsize>9</pointsize>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::WinPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="smallDecimalPoint">
-      <bool>true</bool>
-     </property>
-     <property name="digitCount">
-      <number>12</number>
-     </property>
-     <property name="segmentStyle">
-      <enum>QLCDNumber::Flat</enum>
-     </property>
-    </widget>
    </widget>
   </widget>
   <action name="acGNU">
@@ -897,19 +717,34 @@
     <string>Разработчики</string>
    </property>
   </action>
-  <action name="acQt">
+  <action name="gAngle">
    <property name="text">
-    <string>О &amp;Qt</string>
+    <string>Отклонение</string>
    </property>
   </action>
-  <action name="acGraph">
+  <action name="gPhaze">
    <property name="text">
-    <string>Графики</string>
+    <string>Фазовая диаграмма</string>
    </property>
   </action>
-  <action name="acQCustomPlot">
+  <action name="gEnergy">
    <property name="text">
-    <string>О Q&amp;CustomPlot</string>
+    <string>Энергия системы</string>
+   </property>
+  </action>
+  <action name="aProg">
+   <property name="text">
+    <string>О программе</string>
+   </property>
+  </action>
+  <action name="aGNUGPL">
+   <property name="text">
+    <string>О лицензии GNU GPLv3</string>
+   </property>
+  </action>
+  <action name="aQt">
+   <property name="text">
+    <string>О Qt</string>
    </property>
   </action>
  </widget>

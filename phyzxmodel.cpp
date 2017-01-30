@@ -131,19 +131,10 @@ void Phyzxmodel::RK4(){
     data += (rk[0] + rk[1] * 2 + rk[2] * 2 + rk[3]) / 6.0;
 }
 
-
-/*QVector2D Phyzxmodel::RK4Step(QVector2D y, double t){
-    QVector2D temp;
-    temp.setX(y[0]);
-    temp.setY(damping_factor - (G / rod_length) * std::sin(y[0]));
-    return temp;
+double Phyzxmodel::getDelta(){
+    return dt;
 }
 
-void Phyzxmodel::RK4(){
-    QVector2D rk[4];
-    rk[0] = RK4Step(data, current_time) * dt;
-    rk[1] = RK4Step(data + 0.5 * rk[0], current_time + 0.5 * dt) * dt;
-    rk[2] = RK4Step(data + 0.5 * rk[1], current_time + 0.5 * dt) * dt;
-    rk[3] = RK4Step(data + rk[2], current_time + dt) * dt;
-    data += (rk[0] + rk[1] * 2 + rk[2] * 2 + rk[3]) / 6.0;
-}*/
+float Phyzxmodel::getOmega(){
+    return data.y();
+}

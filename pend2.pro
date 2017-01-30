@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += opengl widgets
 TARGET = pend2
 TEMPLATE = app
 
-CONFIG += c++11 staticlib
+CONFIG += c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -20,9 +20,7 @@ SOURCES += main.cpp\
     globj.cpp \
     scene.cpp \
     qcustomplot.cpp \
-    graphs.cpp \
-    rungekutta4.cpp \
-    timer.cpp
+    graphs.cpp
 
 HEADERS  += mainwindow.h \
     annotation.h \
@@ -30,9 +28,7 @@ HEADERS  += mainwindow.h \
     globj.h \
     scene.h \
     qcustomplot.h \
-    graphs.h \
-    rungekutta4.h \
-    timer.h
+    graphs.h
 
 FORMS    += mainwindow.ui \
     annotation.ui \

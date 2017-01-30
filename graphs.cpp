@@ -10,6 +10,10 @@ Graphs::Graphs(QWidget *parent) :
 
 }
 
+//void Graphs::updateData(QVector<QVector> data){
+//    ui->widget->graph(0)->setData();
+//}
+
 Graphs::~Graphs()
 {
     delete ui;

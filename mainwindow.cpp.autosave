@@ -52,4 +52,16 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
-void MainWindow::updateGraph(QVector<QVector> data, int graph_num);
+void MainWindow::updateGraph(QVector<QVector> data, int graph_num){
+    switch(graph_num){
+    case 0:
+        
+        break;
+    case 1:
+        break;
+    case 2:
+        break;
+    default:
+        break;
+    }
+}

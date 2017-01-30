@@ -2,30 +2,31 @@
 #define _RSCENE_H
 #include "globj.h"
 #include "phyzxmodel.h"
-#include "timer.h"
 
 //#include <iostream>
 #include <QOpenGLWidget>
 //Qt before 5.5? Never heard of
 #include <QTimer>
 #include <QtOpenGL/QtOpenGL>
-#include <QOpenGLFunctions_2_0>
+#include <QOpenGLFunctions_3_3_Core>
 #include <QOpenGLTexture>
 #include <QVector>
 #include <QTextStream>
 #include <QVector3D>
 #include <QVector2D>
+#include <QPair>
 #include <ctime>
 
 class Scene : public QOpenGLWidget, protected QOpenGLFunctions {
     Q_OBJECT
 
 private:
-    Timer ltime;
-    int nbFrames = 0;
-
     GLobj *lowershell, *plank, *shaft, *stand, *swing, *uppershell;
     bool isRunning = false;
+
+    QVector<float> time;
+    QVector<float> angle;
+    QVector<float> impulse;
 
     GLfloat xRot;
     GLfloat yRot;
@@ -45,12 +46,14 @@ private:
     void Default();
     void LightUpdate();
 
+    void DeSetUp();
+
     QOpenGLTexture *wood, *plastic, *metal;
 
     GLuint wood_id, plastic_id, metal_id;
 	GLuint elementbuffer;
 
-    time_t time;
+    double m_time;
     double dt;
     unsigned int cycles;
     Phyzxmodel model;

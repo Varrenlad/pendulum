@@ -1,7 +1,6 @@
 #include "scene.h"
 
-//to simplify RK4 sync
-int iFPS = 50;
+#define SPF 0.016
 
 GLfloat light_ambient[] = {0.3f, 0.3f, 0.3f, 0.0f};
 GLfloat light_diffuse[] = {0.5f, 0.5f, 0.5f, 0.0f};
@@ -10,7 +9,7 @@ GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
 Scene::Scene(QWidget *){
 	QSurfaceFormat format;
-	format.setVersion(2, 0);
+    format.setVersion(2, 0);
 	format.setProfile(QSurfaceFormat::CompatibilityProfile);
 	QSurfaceFormat::setDefaultFormat(format);
     auto pTimer = new QTimer(this);
@@ -18,6 +17,7 @@ Scene::Scene(QWidget *){
     connect(pTimer,SIGNAL(timeout()), this, SLOT(run()));
     pTimer->start(1000 / 60.0);
     Default();
+    DeSetUp();
 }
 
 Scene::~Scene(){
@@ -268,20 +268,20 @@ void Scene::LightUpdate(){
 }
  
 void Scene::draw() {
-    //Draw grid
+    //Draw angles
     glColor3f(1.0, 0.0, 0.0);
-    for(int x = 1; x < 3; x++){
-      glBegin(GL_LINE_STRIP);
-      glVertex3f(0,x,-3);
-      glVertex3f(0,x,3);
-      glEnd();
+    glPushMatrix();
+    glTranslatef(0.2f, 1.8f, 0.0f);
+    glRotatef(134.0f, 1.0f, 0.0f, 0.0f);
+    for(int x = 0; x < 181; ++x){
+        glRotatef(1, 1.0f, 0.0f, 0.0f);
+        glBegin(GL_LINE_STRIP);
+        glVertex3f(0,0.9,-0.9);
+        glVertex3f(0,1,-1);
+        glEnd();
     }
-    for(int y = -2; y < 3; y++){
-      glBegin(GL_LINE_STRIP);
-      glVertex3f(0,0,y);
-      glVertex3f(0,3,y);
-      glEnd();
-    }
+    glTranslatef(0.0f, 0.0f, 0.0f);
+    glPopMatrix();
     glColor3f(1.0, 1.0, 1.0);
     RenderGLobj(*stand);
     RenderGLobj(*plank);
@@ -351,10 +351,6 @@ void Scene::RenderGLobj(GLobj &to_render) {
     glDisable(GL_TEXTURE_2D);
 }
 
-/*(void Scene::rodReload(bool isBallUsed){
-
-}*/
-
 void Scene::createVBO(GLobj &to_load){
     GLuint *temp_VBO = new GLuint[3];
     glGenBuffers(3, temp_VBO);
@@ -384,9 +380,12 @@ void Scene::deleteVBO(GLobj &to_remove) {
 void Scene::run(){
     //throw 2;
     if (isRunning) {
-        time += dt;
+        m_time += model.getDelta();
         //model.currentTime(time);
         model.updateData();
+        time.push_back(m_time);
+        angle.push_back(model.getTheta());
+        impulse.push_back(model.getOmega());
         swing->setRotation(QVector3D(model.getTheta(), 0.0f, 0.0f));
 
     }
@@ -399,7 +398,12 @@ void Scene::toggleRunning(bool){
     isRunning = !isRunning;
     if (isRunning){
         model.setUp();
+        angle.clear();
+        time.clear();
+        impulse.clear();
     }
+    //else
+    //    DeSetUp();
 }
 
 void Scene::setAngle(double new_angle){
@@ -433,7 +437,7 @@ void Scene::setDamping(double damp_data){
 }
 
 void Scene::setSpeed(int new_speed){
-    iFPS = new_speed;
+    model.setSpd(SPF * static_cast<double>(new_speed) / 100.0);
 }
 void Scene::setImpulse(double new_impulse){
     model.setImp(new_impulse);
@@ -441,4 +445,12 @@ void Scene::setImpulse(double new_impulse){
 
 void Scene::setLength(double new_length){
     model.setLen(new_length);
+}
+
+void Scene::DeSetUp(){
+    model.setTht0(0);
+    model.setImp(0);
+    model.setDamp(90);
+    model.setLen(100);
+    model.setRMass(10);
 }

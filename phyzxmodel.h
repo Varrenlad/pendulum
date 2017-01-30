@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <QVector2D>
-#include "rungekutta4.h"
 
 #define PI 3.14159265359
 #define G 9.8145 //not exact data, but good enough for Novosibirsk
@@ -34,6 +33,8 @@ public:
     void setDamp(double n_d);
     void currentTime(double t_a);
     double getTheta();
+    double getDelta();
+    float getOmega();
     COMPOUND getComp();
 
 private:

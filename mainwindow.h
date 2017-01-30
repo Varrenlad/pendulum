@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
-
+    void updateGraph(QVector<QVector> data, int graph_num);
 
 signals:
     //void on_hsSpeed_valueChanged(int value);
@@ -26,7 +26,7 @@ signals:
 
 private:
     Ui::MainWindow *ui;
-    Graphs *frame;
+    Graphs *phaze, *angle, *impulse;
 
 };
 
