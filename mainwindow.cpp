@@ -18,6 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     impulse->setHidden(true);
 
     ui->setupUi(this);
+    connect(ui->cbPhyz, SIGNAL(stateChanged(int)),
+            ui->openGLWidget, SLOT(setType(int)));
+
     connect(ui->hsSpeed, SIGNAL(valueChanged(int)),
             ui->lSpeed, SLOT(setNum(int)));
 
@@ -45,11 +48,28 @@ MainWindow::MainWindow(QWidget *parent) :
             impulse, SLOT(setVisible(bool)));
     connect(ui->gPhaze, SIGNAL(toggled(bool)),
             phaze, SLOT(setVisible(bool)));
+
+    connect(ui->pbReload, SIGNAL(clicked(bool)),
+            ui->openGLWidget, SLOT(flushChanges(bool)));
 }
 
 MainWindow::~MainWindow(){
-    delete frame;
+    delete angle;
+    delete phaze;
+    delete impulse;
     delete ui;
 }
 
-void MainWindow::updateGraph(QVector<QVector> data, int graph_num);
+/*void MainWindow::updateGraph(QVector<QVector> data, int graph_num){
+    switch(graph_num){
+    case 0:
+
+        break;
+    case 1:
+        break;
+    case 2:
+        break;
+    default:
+        break;
+    }
+}*/

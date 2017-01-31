@@ -10,7 +10,8 @@ class Graphs;
 class Graphs : public QDialog
 {
     Q_OBJECT
-
+public slots:
+    //void updateData(QVector<QVector> data);
 public:
     explicit Graphs(QWidget *parent = 0);
     ~Graphs();

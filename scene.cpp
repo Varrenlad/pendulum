@@ -103,16 +103,17 @@ void Scene::resizeGL(int nWidth, int nHeight) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     GLfloat width, height, tangent;
+    glViewport(0, 0,(GLint)nWidth, (GLint)nHeight);
     GLfloat ratio=(GLfloat)nHeight / (GLfloat)nWidth;
     if (nWidth>=nHeight)
         glOrtho(-1.0/ratio, 1.0/ratio, -1.0, 1.0, -10.0, 30.0);
     else
         glOrtho(-1.0, 1.0, -1.0*ratio, 1.0*ratio, -10.0, 30.0);
-    tangent = tan(90/2 * 3.14159265 / 180);
-    height = nSca * tangent;
-    width = height * ratio;
-    glFrustum(-width, width, -height, height, -10.0f, 30.0f);
-    glViewport(0, 0,(GLint)nWidth, (GLint)nHeight);
+    //tangent = tan(90/2 * 3.14159265 / 180);
+    //height = nSca * tangent;
+    //width = height * ratio;
+    //glFrustum(-2.0f, 2.0f, -2.0f, 2.0f, -5.0f, 10.0f);
+    glMatrixMode (GL_MODELVIEW);
 }
 
 void Scene::paintGL() {
@@ -256,15 +257,21 @@ void Scene::Default(){
 }
 
 void Scene::LightUpdate(){
-    GLfloat light_diffuse_new[] =
-    {
-        light_diffuse[0] * 2.0f * nSca,
-        light_diffuse[1] * 2.0f * nSca,
-        light_diffuse[2] * 2.0f * nSca,
-        light_diffuse[3]
-    };
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse_new);
-    glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse_new);
+    //GLfloat light_diffuse_new[] =
+    //{
+    //    light_diffuse[0] * 2.0f * nSca,
+    //    light_diffuse[1] * 2.0f * nSca,
+    //    light_diffuse[2] * 2.0f * nSca,
+    //    light_diffuse[3]
+    //};
+    //light_position0[0] += xRot;
+    //light_position0[1] += yRot;
+    //light_position0[2] += zRot;
+    //light_position[0] += xRot;
+    //light_position[1] += yRot;
+    //light_position[2] += zRot;
+    //glLightfv(GL_LIGHT0, GL_POSITION, light_position0);
+    //glLightfv(GL_LIGHT1, GL_POSITION, light_position);
 }
  
 void Scene::draw() {
@@ -276,7 +283,10 @@ void Scene::draw() {
     for(int x = 0; x < 181; ++x){
         glRotatef(1, 1.0f, 0.0f, 0.0f);
         glBegin(GL_LINE_STRIP);
-        glVertex3f(0,0.9,-0.9);
+        if (x % 5)
+            glVertex3f(0.0f, 0.99f, -0.99f);
+        else
+            glVertex3f(0.0f, 0.9f, -0.9f);
         glVertex3f(0,1,-1);
         glEnd();
     }
@@ -416,7 +426,7 @@ void Scene::setMass(double new_mass){
     model.setRMass(new_mass);
 }
 
-void Scene::setType(bool isBallUsed){
+void Scene::setType(int isBallUsed){
     deleteVBO(*swing);
     delete swing;
     if (isBallUsed)
@@ -453,4 +463,8 @@ void Scene::DeSetUp(){
     model.setDamp(90);
     model.setLen(100);
     model.setRMass(10);
+}
+
+void Scene::flushChanges(bool b){
+    DeSetUp();
 }

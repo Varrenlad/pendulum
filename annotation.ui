@@ -36,9 +36,21 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>641</width>
-     <height>481</height>
+     <width>640</width>
+     <height>480</height>
     </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>640</width>
+     <height>480</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>640</width>
+     <height>480</height>
+    </size>
    </property>
    <property name="text">
     <string/>
@@ -47,7 +59,7 @@
     <pixmap resource="ares.qrc">:/splash/splash.png</pixmap>
    </property>
    <property name="scaledContents">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

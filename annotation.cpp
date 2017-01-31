@@ -22,6 +22,7 @@ Annotation::Annotation(QWidget *parent) :
 void Annotation::reloadSplash(QImage &new_splash){
     ui->label->clear();
     ui->label->setPixmap(QPixmap::fromImage(new_splash));
+    ui->label->repaint();
 }
 
 Annotation::~Annotation(){

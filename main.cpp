@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QFontDatabase>
 #include <QImage>
+#include <QDir>
 #include <memory>
 
 int main(int argc, char *argv[])
@@ -12,7 +13,8 @@ int main(int argc, char *argv[])
     QFontDatabase::addApplicationFont(":/DejaVuLGCSansCondensed.ttf");
     Annotation anno;
     QImage new_splash;
-    if (new_splash.load(QStringLiteral(":/anno_splash.png"))){
+    QString path = QDir::currentPath() + QStringLiteral("/anno_splash.png");
+    if (new_splash.load(path)){
         anno.reloadSplash(new_splash);
     }
     MainWindow w;

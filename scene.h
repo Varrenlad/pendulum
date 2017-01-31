@@ -82,13 +82,14 @@ signals:
     void diffAngle(double current_angle);
 public slots:
     void toggleRunning(bool);
+    void flushChanges(bool);
     void run();
     void setAngle(double new_angle);
     void setMass(double new_mass);
     void setImpulse(double new_impulse);
     void setLength(double new_length);
     //void updateModel(double time);
-    void setType(bool isBallUsed);
+    void setType(int isBallUsed);
     void setDelta(double new_delta);
     void setDamping(double damp_data);
     void setSpeed(int new_speed);

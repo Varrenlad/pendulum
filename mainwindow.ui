@@ -112,88 +112,25 @@
     <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
-    <widget class="QLabel" name="label_8">
-     <property name="geometry">
-      <rect>
-       <x>50</x>
-       <y>0</y>
-       <width>141</width>
-       <height>121</height>
-      </rect>
-     </property>
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>0</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>239</width>
-       <height>150</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>DejaVu Sans</family>
-       <pointsize>9</pointsize>
-       <stylestrategy>PreferDefault</stylestrategy>
-       <kerning>true</kerning>
-      </font>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Plain</enum>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="ares.qrc">:/Emblem_NSTU_orange_r.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="margin">
-      <number>0</number>
-     </property>
-     <property name="indent">
-      <number>0</number>
-     </property>
-     <property name="textInteractionFlags">
-      <set>Qt::NoTextInteraction</set>
-     </property>
-    </widget>
     <widget class="QGroupBox" name="groupBox">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>120</y>
+       <y>0</y>
        <width>251</width>
-       <height>261</height>
+       <height>231</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
        <width>251</width>
-       <height>261</height>
+       <height>230</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>251</width>
-       <height>261</height>
+       <height>999</height>
       </size>
      </property>
      <property name="font">
@@ -266,6 +203,9 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="toolTip">
+       <string>Отклонение от точки стабильности (0, 0)</string>
+      </property>
       <property name="text">
        <string>Отклонение [град]</string>
       </property>
@@ -287,6 +227,9 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="toolTip">
+       <string>Коэффициент затухания колебаний</string>
+      </property>
       <property name="text">
        <string>Коэффициент трения</string>
       </property>
@@ -307,6 +250,9 @@
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
+      </property>
+      <property name="toolTip">
+       <string>Выбор между подвесом на нити и цилиндром</string>
       </property>
       <property name="text">
        <string>Маятник с подвесом</string>
@@ -426,6 +372,9 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="toolTip">
+       <string>Импульс, сообщенный маятнику</string>
+      </property>
       <property name="text">
        <string>Начальный импульс [Тс]</string>
       </property>
@@ -463,15 +412,15 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>380</y>
+       <y>240</y>
        <width>251</width>
-       <height>221</height>
+       <height>151</height>
       </rect>
      </property>
      <property name="minimumSize">
       <size>
        <width>251</width>
-       <height>221</height>
+       <height>100</height>
       </size>
      </property>
      <property name="maximumSize">
@@ -535,6 +484,9 @@
         <kerning>true</kerning>
        </font>
       </property>
+      <property name="toolTip">
+       <string>Скорость, с которой будет изменяться состояние объекта</string>
+      </property>
       <property name="maximum">
        <number>200</number>
       </property>
@@ -546,6 +498,15 @@
       </property>
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="invertedAppearance">
+       <bool>false</bool>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksAbove</enum>
+      </property>
+      <property name="tickInterval">
+       <number>10</number>
       </property>
      </widget>
      <widget class="QLabel" name="lSpeed">
@@ -594,7 +555,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>160</y>
+        <y>100</y>
         <width>141</width>
         <height>21</height>
        </rect>
@@ -615,7 +576,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>160</y>
+        <y>100</y>
         <width>71</width>
         <height>20</height>
        </rect>
@@ -666,7 +627,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>190</y>
+        <y>120</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -687,7 +648,7 @@
       <property name="geometry">
        <rect>
         <x>170</x>
-        <y>190</y>
+        <y>120</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -704,6 +665,69 @@
        <string>Сброс</string>
       </property>
      </widget>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>420</y>
+       <width>231</width>
+       <height>191</height>
+      </rect>
+     </property>
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>239</width>
+       <height>999</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>DejaVu Sans</family>
+       <pointsize>9</pointsize>
+       <stylestrategy>PreferDefault</stylestrategy>
+       <kerning>true</kerning>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="ares.qrc">:/Emblem_NSTU_orange.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+     <property name="margin">
+      <number>0</number>
+     </property>
+     <property name="indent">
+      <number>0</number>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::NoTextInteraction</set>
+     </property>
     </widget>
    </widget>
   </widget>

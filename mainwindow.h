@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void updateGraph(QVector<QVector> data, int graph_num);
+    //void updateGraph(QVector<QVector> data, int graph_num);
 
 signals:
     //void on_hsSpeed_valueChanged(int value);
