@@ -1,7 +1,5 @@
 #include "scene.h"
 
-#define SPF 0.016
-
 GLfloat light_ambient[] = {0.3f, 0.3f, 0.3f, 0.0f};
 GLfloat light_diffuse[] = {0.5f, 0.5f, 0.5f, 0.0f};
 GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
@@ -393,9 +391,12 @@ void Scene::run(){
         m_time += model.getDelta();
         //model.currentTime(time);
         model.updateData();
-        time.push_back(m_time);
-        angle.push_back(model.getTheta());
-        impulse.push_back(model.getOmega());
+        if (!(frames_done % FBU)){
+            time.push_back(m_time);
+            angle.push_back(model.getTheta());
+            impulse.push_back(model.getOmega());
+            emit newGraphData();
+        }
         swing->setRotation(QVector3D(model.getTheta(), 0.0f, 0.0f));
 
     }
@@ -407,13 +408,12 @@ void Scene::run(){
 void Scene::toggleRunning(bool){
     isRunning = !isRunning;
     if (isRunning){
+        frames_done = 0;
         model.setUp();
         angle.clear();
         time.clear();
         impulse.clear();
     }
-    //else
-    //    DeSetUp();
 }
 
 void Scene::setAngle(double new_angle){
@@ -463,8 +463,22 @@ void Scene::DeSetUp(){
     model.setDamp(90);
     model.setLen(100);
     model.setRMass(10);
+    update(); ///force update the render
 }
 
 void Scene::flushChanges(bool b){
     DeSetUp();
 }
+
+QVector<double> &Scene::getAngleData(){
+    return angle;
+}
+
+QVector<double> &Scene::getImpulseData(){
+    return impulse;
+}
+
+QVector<double> &Scene::getTimeData(){
+    return time;
+}
+

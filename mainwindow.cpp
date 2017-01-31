@@ -5,18 +5,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    phaze = new Graphs();
-    phaze->show();
-    phaze->setHidden(true);
-
-    angle = new Graphs();
-    angle->show();
-    angle->setHidden(true);
-
-    impulse = new Graphs();
-    impulse->show();
-    impulse->setHidden(true);
-
     ui->setupUi(this);
     connect(ui->cbPhyz, SIGNAL(stateChanged(int)),
             ui->openGLWidget, SLOT(setType(int)));
@@ -42,15 +30,58 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->hsSpeed, SIGNAL(sliderMoved(int)),
             ui->openGLWidget, SLOT(setSpeed(int)));
 
-    connect(ui->gAngle, SIGNAL(toggled(bool)),
+    /*connect(ui->gAngle, SIGNAL(toggled(bool)),
             angle, SLOT(setVisible(bool)));
     connect(ui->gEnergy, SIGNAL(toggled(bool)),
             impulse, SLOT(setVisible(bool)));
     connect(ui->gPhaze, SIGNAL(toggled(bool)),
-            phaze, SLOT(setVisible(bool)));
+            phaze, SLOT(setVisible(bool)));*/
 
     connect(ui->pbReload, SIGNAL(clicked(bool)),
             ui->openGLWidget, SLOT(flushChanges(bool)));
+
+    phaze = new Graphs(ui->openGLWidget->getImpulseData(),
+                       ui->openGLWidget->getAngleData(),
+                       this);
+    phaze->show();
+    phaze->setHidden(true);
+
+    angle = new Graphs(ui->openGLWidget->getTimeData(),
+                       ui->openGLWidget->getAngleData(),
+                       this);
+    angle->show();
+    angle->setHidden(true);
+
+    impulse = new Graphs(ui->openGLWidget->getTimeData(),
+                         ui->openGLWidget->getImpulseData(),
+                         this);
+    impulse->show();
+    impulse->setHidden(true);
+
+    connect(ui->pbReload, SIGNAL(pressed()),
+            phaze, SLOT(destroyData()));
+    connect(ui->pbReload, SIGNAL(pressed()),
+            angle, SLOT(destroyData()));
+    connect(ui->pbReload, SIGNAL(pressed()),
+            impulse, SLOT(destroyData()));
+
+    connect(ui->openGLWidget, SIGNAL(newGraphData()),
+            phaze, SLOT(updateData()));
+    connect(ui->openGLWidget, SIGNAL(newGraphData()),
+            angle, SLOT(updateData()));
+    connect(ui->openGLWidget, SIGNAL(newGraphData()),
+            impulse, SLOT(updateData()));
+
+    phaze->show();
+    //angle->show();
+    //impulse->show();
+
+    connect(ui->gPhaze, SIGNAL(changed()),
+            phaze, SLOT(show()));
+    connect(ui->gAngle, SIGNAL(changed()),
+            angle, SLOT(show()));
+    connect(ui->gEnergy, SIGNAL(changed()),
+            impulse, SLOT(show()));
 }
 
 MainWindow::~MainWindow(){

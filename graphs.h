@@ -11,12 +11,17 @@ class Graphs : public QDialog
 {
     Q_OBJECT
 public slots:
-    //void updateData(QVector<QVector> data);
+    void updateData();
+    void destroyData();
 public:
-    explicit Graphs(QWidget *parent = 0);
+    explicit Graphs(QVector<double> &o_first,
+                    QVector<double> &o_second,
+                    QWidget *parent = 0);
     ~Graphs();
 
 private:
+    QVector<double> first_field;
+    QVector<double> second_field;
     Ui::Graphs *ui;
 };
 
