@@ -392,10 +392,7 @@ void Scene::run(){
         //model.currentTime(time);
         model.updateData();
         if (!(frames_done % FBU)){
-            time.push_back(m_time);
-            angle.push_back(model.getTheta());
-            impulse.push_back(model.getOmega());
-            emit newGraphData();
+            emit newGraphData(m_time, model.getTheta(), model.getOmega());
         }
         swing->setRotation(QVector3D(model.getTheta(), 0.0f, 0.0f));
 
@@ -410,9 +407,6 @@ void Scene::toggleRunning(bool){
     if (isRunning){
         frames_done = 0;
         model.setUp();
-        angle.clear();
-        time.clear();
-        impulse.clear();
     }
 }
 
@@ -469,16 +463,3 @@ void Scene::DeSetUp(){
 void Scene::flushChanges(bool b){
     DeSetUp();
 }
-
-QVector<double> &Scene::getAngleData(){
-    return angle;
-}
-
-QVector<double> &Scene::getImpulseData(){
-    return impulse;
-}
-
-QVector<double> &Scene::getTimeData(){
-    return time;
-}
-

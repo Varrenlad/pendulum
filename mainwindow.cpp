@@ -40,23 +40,17 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pbReload, SIGNAL(clicked(bool)),
             ui->openGLWidget, SLOT(flushChanges(bool)));
 
-    phaze = new Graphs(ui->openGLWidget->getImpulseData(),
-                       ui->openGLWidget->getAngleData(),
-                       this);
+    phaze = new Graphs(QStringLiteral("Phase graph"), this);
     phaze->show();
-    phaze->setHidden(true);
+    //phaze->setHidden(true);
 
-    angle = new Graphs(ui->openGLWidget->getTimeData(),
-                       ui->openGLWidget->getAngleData(),
-                       this);
+    angle = new Graphs(QStringLiteral("Angle graph"), this);
     angle->show();
-    angle->setHidden(true);
+    //angle->setHidden(true);
 
-    impulse = new Graphs(ui->openGLWidget->getTimeData(),
-                         ui->openGLWidget->getImpulseData(),
-                         this);
+    impulse = new Graphs(QStringLiteral("Impulse graph"), this);
     impulse->show();
-    impulse->setHidden(true);
+    //impulse->setHidden(true);
 
     connect(ui->pbReload, SIGNAL(pressed()),
             phaze, SLOT(destroyData()));
@@ -65,14 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pbReload, SIGNAL(pressed()),
             impulse, SLOT(destroyData()));
 
-    connect(ui->openGLWidget, SIGNAL(newGraphData()),
-            phaze, SLOT(updateData()));
-    connect(ui->openGLWidget, SIGNAL(newGraphData()),
-            angle, SLOT(updateData()));
-    connect(ui->openGLWidget, SIGNAL(newGraphData()),
-            impulse, SLOT(updateData()));
-
-    phaze->show();
+    //phaze->show();
     //angle->show();
     //impulse->show();
 
@@ -82,6 +69,9 @@ MainWindow::MainWindow(QWidget *parent) :
             angle, SLOT(show()));
     connect(ui->gEnergy, SIGNAL(changed()),
             impulse, SLOT(show()));
+
+    connect(ui->openGLWidget, SIGNAL(newGraphData(double,double,double)),
+            this, SLOT(updateGraph(double,double,double)));
 }
 
 MainWindow::~MainWindow(){
@@ -89,6 +79,12 @@ MainWindow::~MainWindow(){
     delete phaze;
     delete impulse;
     delete ui;
+}
+
+void MainWindow::updateGraph(double p_time, double p_angle, double p_impulse){
+    phaze->addPoint(p_angle, p_impulse);
+    angle->addPoint(p_time, p_angle);
+    impulse->addPoint(p_time, p_impulse);
 }
 
 /*void MainWindow::updateGraph(QVector<QVector> data, int graph_num){

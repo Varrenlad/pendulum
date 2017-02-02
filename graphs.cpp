@@ -1,21 +1,22 @@
 #include "graphs.h"
 #include "ui_graphs.h"
 
-Graphs::Graphs(QVector<double> &o_first,
-               QVector<double> &o_second,
+Graphs::Graphs(QString name,
                QWidget *parent) :
-    first_field(o_first),
-    second_field(o_second),
     QDialog(parent),
     ui(new Ui::Graphs)
 {
     ui->setupUi(this);
+    graph_data = new QCPCurve(ui->widget->xAxis, ui->widget->yAxis);
     this->setLocale(QLocale(QLocale::Russian, QLocale::RussianFederation));
-    ui->widget->addGraph();
+    ui->widget->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+    this->setWindowTitle(name);
 }
 
-void Graphs::updateData(){
-    ui->widget->graph(0)->setData(first_field, second_field);
+void Graphs::addPoint(double first_var, double second_var){
+    graph_data->data()->add(QCPCurveData(i, first_var, second_var));
+    ++i;
+    ui->widget->rescaleAxes();
     ui->widget->replot();
 }
 
@@ -24,5 +25,9 @@ Graphs::~Graphs() {
 }
 
 void Graphs::destroyData() {
-    ui->widget->clearGraphs();
+    graph_data->data()->clear();
+    ui->widget->rescaleAxes();
+    ui->widget->replot();
+    //ui->widget->clearGraphs();
+    i = 0;
 }

@@ -12,7 +12,7 @@
 //Qt before 5.5? Never heard of
 #include <QTimer>
 #include <QtOpenGL/QtOpenGL>
-#include <QOpenGLFunctions_3_3_Core>
+#include <QOpenGLFunctions_2_0>
 #include <QOpenGLTexture>
 #include <QVector>
 #include <QTextStream>
@@ -28,8 +28,6 @@ private:
     GLobj *lowershell, *plank, *shaft, *stand, *swing, *uppershell;
     bool isRunning = false;
     uint64_t frames_done;
-
-    QVector<double> time, angle, impulse;
 
     GLfloat xRot;
     GLfloat yRot;
@@ -77,16 +75,10 @@ private:
     void wheelEvent(QWheelEvent*) Q_DECL_OVERRIDE;
     void keyPressEvent(QKeyEvent*) Q_DECL_OVERRIDE;
 public:
-
-    ///graph implementation
-    QVector<double> &getAngleData();
-    QVector<double> &getImpulseData();
-    QVector<double> &getTimeData();
-
     explicit Scene(QWidget *parent = 0);
     ~Scene();
 signals:
-    void newGraphData();
+    void newGraphData(double time, double angle, double energy);
     void diffEnergy(double current_energy);
     void diffFreq(double const_freq);
     void diffAngle(double current_angle);

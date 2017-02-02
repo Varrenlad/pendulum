@@ -18,7 +18,7 @@ public:
     ~MainWindow();
 
 public slots:
-    //void updateGraph(QVector<QVector> data, int graph_num);
+    void updateGraph(double time, double angle, double impulse);
 
 signals:
     //void on_hsSpeed_valueChanged(int value);

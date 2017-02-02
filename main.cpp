@@ -6,8 +6,7 @@
 #include <QDir>
 #include <memory>
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     QFontDatabase::addApplicationFont(":/DejaVuLGCSans-ExtraLight.ttf");
     QFontDatabase::addApplicationFont(":/DejaVuLGCSansCondensed.ttf");
