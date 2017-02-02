@@ -22,7 +22,7 @@ public:
 private:
     size_t i = 0;
     //QVector<QCPCurveData> points;
-    QCPCurve *graph_data;
+    QCPCurve *graph_data = nullptr;
     Ui::Graphs *ui;
 };
 

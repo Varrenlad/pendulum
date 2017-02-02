@@ -193,9 +193,6 @@ void Scene::keyPressEvent(QKeyEvent *qke){
     case Qt::Key_Space:
         Default();
         break;
-    case Qt::Key_Escape:
-        this->close();
-        break;
     }
     update();
 }
