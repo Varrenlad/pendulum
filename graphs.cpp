@@ -11,7 +11,7 @@ Graphs::Graphs(QString name,
             graph_data = new QCPCurve(ui->widget->xAxis, ui->widget->yAxis);
     else {
         ui->widget->addGraph();
-        ui->widget->graph()->setBrush(QBrush(QColor(40, 212, 157, 128)));
+        ui->widget->graph()->setBrush(QBrush(QColor(40, 212, 157, 10)));
     }
     this->setLocale(QLocale(QLocale::Russian, QLocale::RussianFederation));
     ui->widget->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);

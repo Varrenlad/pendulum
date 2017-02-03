@@ -98,6 +98,10 @@ void Phyzxmodel::updateData(){
             (1 + 1/4 * pow(sin(data.x() / 2), 2) +
              9/64*pow(sin(data.x() / 2), 4));
     RK4();
+    while (data.x() > PI)
+        data.setX(data.x() - 2 * PI);
+    while (data.x() < -PI)
+        data.setX(data.x() + 2 * PI);
 }
 
 double Phyzxmodel::getKEnergy(){
