@@ -42,15 +42,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     phaze = new Graphs(QStringLiteral("Phase graph"), this);
     phaze->show();
-    //phaze->setHidden(true);
+    phaze->setHidden(true);
 
     angle = new Graphs(QStringLiteral("Angle graph"), this);
     angle->show();
-    //angle->setHidden(true);
+    angle->setHidden(true);
 
     impulse = new Graphs(QStringLiteral("Impulse graph"), this);
     impulse->show();
-    //impulse->setHidden(true);
+    impulse->setHidden(true);
 
     connect(ui->pbReload, SIGNAL(pressed()),
             phaze, SLOT(destroyData()));
@@ -59,16 +59,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->pbReload, SIGNAL(pressed()),
             impulse, SLOT(destroyData()));
 
-    //phaze->show();
-    //angle->show();
-    //impulse->show();
-
-    connect(ui->gPhaze, SIGNAL(changed()),
-            phaze, SLOT(show()));
-    connect(ui->gAngle, SIGNAL(changed()),
-            angle, SLOT(show()));
-    connect(ui->gEnergy, SIGNAL(changed()),
-            impulse, SLOT(show()));
+    connect(ui->gPhaze, SIGNAL(triggered(bool)),
+            phaze, SLOT(setHidden(bool)));
+    connect(ui->gAngle, SIGNAL(triggered(bool)),
+            angle, SLOT(setHidden(bool)));
+    connect(ui->gEnergy, SIGNAL(triggered(bool)),
+            impulse, SLOT(setHidden(bool)));
 
     connect(ui->openGLWidget, SIGNAL(newGraphData(double,double,double)),
             this, SLOT(updateGraph(double,double,double)));

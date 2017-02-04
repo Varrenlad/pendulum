@@ -50,7 +50,7 @@
      <x>0</x>
      <y>0</y>
      <width>883</width>
-     <height>19</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_2">
@@ -63,7 +63,7 @@
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>Помощь</string>
+     <string>Справка</string>
     </property>
     <addaction name="aProg"/>
     <addaction name="aGNUGPL"/>
@@ -763,12 +763,12 @@
   </action>
   <action name="aGNUGPL">
    <property name="text">
-    <string>О лицензии GNU GPLv3</string>
+    <string>О лицензии &amp;GNU GPLv3</string>
    </property>
   </action>
   <action name="aQt">
    <property name="text">
-    <string>О Qt</string>
+    <string>О &amp;Qt</string>
    </property>
   </action>
  </widget>
