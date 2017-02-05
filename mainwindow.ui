@@ -14,7 +14,7 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>Физический маятник</string>
+   <string>Виртуальная лаборатория «Физический маятник»</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -468,14 +468,14 @@
          </font>
         </property>
         <property name="title">
-         <string>Debug</string>
+         <string>Управление экспериментом</string>
         </property>
         <widget class="QLCDNumber" name="dtTime">
          <property name="geometry">
           <rect>
-           <x>10</x>
+           <x>140</x>
            <y>30</y>
-           <width>141</width>
+           <width>101</width>
            <height>31</height>
           </rect>
          </property>
@@ -487,11 +487,26 @@
            <kerning>true</kerning>
           </font>
          </property>
+         <property name="frameShape">
+          <enum>QFrame::Box</enum>
+         </property>
          <property name="frameShadow">
           <enum>QFrame::Plain</enum>
          </property>
+         <property name="lineWidth">
+          <number>1</number>
+         </property>
+         <property name="midLineWidth">
+          <number>0</number>
+         </property>
+         <property name="smallDecimalPoint">
+          <bool>false</bool>
+         </property>
          <property name="digitCount">
-          <number>12</number>
+          <number>7</number>
+         </property>
+         <property name="mode">
+          <enum>QLCDNumber::Dec</enum>
          </property>
          <property name="segmentStyle">
           <enum>QLCDNumber::Flat</enum>
@@ -517,6 +532,9 @@
          <property name="toolTip">
           <string>Скорость, с которой будет изменяться состояние объекта</string>
          </property>
+         <property name="minimum">
+          <number>5</number>
+         </property>
          <property name="maximum">
           <number>200</number>
          </property>
@@ -532,8 +550,11 @@
          <property name="invertedAppearance">
           <bool>false</bool>
          </property>
+         <property name="invertedControls">
+          <bool>false</bool>
+         </property>
          <property name="tickPosition">
-          <enum>QSlider::TicksAbove</enum>
+          <enum>QSlider::NoTicks</enum>
          </property>
          <property name="tickInterval">
           <number>10</number>
@@ -584,10 +605,10 @@
         <widget class="QLabel" name="label_6">
          <property name="geometry">
           <rect>
-           <x>156</x>
-           <y>29</y>
-           <width>61</width>
-           <height>31</height>
+           <x>10</x>
+           <y>34</y>
+           <width>81</width>
+           <height>21</height>
           </rect>
          </property>
          <property name="font">

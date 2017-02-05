@@ -5,9 +5,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    auto pTimer = new QTimer(this);
-
     ui->setupUi(this);
+
+    pTimer = new QTimer();
+    connect(pTimer, SIGNAL(timeout()),
+            this, SLOT(timerUP()));
 
     connect(ui->cbPhyz, SIGNAL(stateChanged(int)),
             ui->openGLWidget, SLOT(setType(int)));
@@ -82,11 +84,13 @@ void MainWindow::updateGraph(double p_time, double p_angle, double p_impulse){
     phaze->addPoint(p_angle, p_impulse);
     angle->addPoint(p_time, p_angle);
     impulse->addPoint(p_time, p_impulse);
+    ui->dtTime->display(p_time);
 }
 
 void MainWindow::on_pbStart_clicked(bool checked) {
     if (isRunning){
         ui->pbStart->setText("Старт");
+        pTimer->stop();
         /*ui->cbPhyz->setEnabled(true);
         ui->sbAngle->setEnabled(true);
         ui->sbDCoeff->setEnabled(true);
@@ -95,6 +99,7 @@ void MainWindow::on_pbStart_clicked(bool checked) {
         ui->sbMass->setEnabled(true);*/
     }
     else {
+        pTimer->start(100);
         ui->pbStart->setText("Пауза");
         ui->cbPhyz->setEnabled(false);
         ui->sbAngle->setEnabled(false);
@@ -115,4 +120,10 @@ void MainWindow::on_pbReload_clicked(bool checked) {
     ui->sbImpulse->setEnabled(true);
     ui->sbLength->setEnabled(true);
     ui->sbMass->setEnabled(true);
+    ui->dtTime->display(0);
+}
+
+void MainWindow::timerUP(){
+    curtime += 0.1;
+    ui->dtTime_2->display(curtime);
 }

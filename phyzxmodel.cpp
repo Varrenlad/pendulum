@@ -16,14 +16,7 @@ Phyzxmodel::Phyzxmodel() {}
 Phyzxmodel::~Phyzxmodel() {}
 
 void Phyzxmodel::setUp(){
-    isReady();
-    //if (!m_ready)
-    //    throw 1;
-    m_dirty = false;
-    /*natural_freq = swing_period = 2 * PI * sqrt(rod_length + G) *
-            (1 + 1/4 * pow(sin(RAD(theta_current) / 2), 2)
-            + 9/64*pow(sin(RAD(theta_current) / 2), 4));*/
-    natural_freq = sqrt(G/rod_length);
+    //natural_freq = sqrt(G/rod_length);
     if (p_type == BALL)
         omega = sqrt(5.0 * G * (rod_length + obj_rad)/2.0 * obj_rad * obj_rad);
     else
@@ -31,39 +24,30 @@ void Phyzxmodel::setUp(){
 }
 
 void Phyzxmodel::setImp(float impulse){
-    m_dirty = true;
     data.setY(impulse);
 }
 
 void Phyzxmodel::setTht0(float t_z){
-    m_dirty = true;
     data.setX(_rad(t_z));
 }
 
 void Phyzxmodel::setRMass(double n_m){
-    m_dirty = true;
     rod_mass = n_m;
 }
 
 void Phyzxmodel::setLen(double n_l){
-    m_dirty = true;
-//    rod_length = n_l;
-
     m_coeff = G / n_l;
 }
 
 void Phyzxmodel::setSpd(double n_s){
-    m_dirty = true;
     dt = n_s;
 }
 
 void Phyzxmodel::setComp(COMPOUND n_c){
-    m_dirty = true;
     p_type = n_c;
 }
 
 void Phyzxmodel::setDamp(double n_d){
-    m_dirty = true;
     damping_factor = n_d * 100 / (rod_mass * rod_length * rod_length);
     if (p_type == NONE)
         damping_factor *= (9.0 / 4.0);
@@ -84,19 +68,6 @@ COMPOUND Phyzxmodel::getComp(){
 
 //main working module
 void Phyzxmodel::updateData(){
-    //if (!m_ready)
-    //    throw 1;
-    /*while (data.x() > PI) {
-        data.setX(data.x() - 2 * PI);
-    }
-    while (data.x() < -PI) {
-        data.setX(data.x() + 2 * PI);
-    }*/
-    if (rod_mass == -1 || m_coeff == -1 || dt == -1)
-        throw 0; //we need these values before evaluating data
-    swing_period = 2 * PI * sqrt(rod_length + G) *
-            (1 + 1/4 * pow(sin(data.x() / 2), 2) +
-             9/64*pow(sin(data.x() / 2), 4));
     RK4();
     while (data.x() > PI)
         data.setX(data.x() - 2 * PI);
@@ -114,9 +85,6 @@ double Phyzxmodel::getPEnergy(){
 
 double Phyzxmodel::getPeriod(){
     return swing_period;
-}
-
-void Phyzxmodel::isReady(){
 }
 
 QVector2D Phyzxmodel::RK4Step(QVector2D y){

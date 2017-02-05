@@ -1,7 +1,7 @@
 #ifndef _RSCENE_H
 #define _RSCENE_H
 
-#define FBU 5     ///frames between graph update
+#define FBU 7     ///frames between graph update
 #define SPF 0.016 ///seconds per frame render
 
 #include "globj.h"
@@ -92,7 +92,6 @@ public slots:
     void setLength(double new_length);
     //void updateModel(double time);
     void setType(int isBallUsed);
-    void setDelta(double new_delta);
     void setDamping(double damp_data);
     void setSpeed(int new_speed);
 };

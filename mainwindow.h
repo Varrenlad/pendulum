@@ -26,13 +26,14 @@ signals:
 
 private slots:
     void on_pbStart_clicked(bool checked);
-
     void on_pbReload_clicked(bool checked);
-
+    void timerUP();
 private:
+    QTimer *pTimer;
     Ui::MainWindow *ui;
     Graphs *phaze, *angle, *impulse;
     bool isRunning = false;
+    double curtime = 0.0;
 };
 
 #endif // MAINWINDOW_H

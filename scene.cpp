@@ -15,7 +15,6 @@ Scene::Scene(QWidget *parent){
     connect(pTimer,SIGNAL(timeout()), this, SLOT(run()));
     pTimer->start(1000 / 60.0);
     Default();
-    DeSetUp();
 }
 
 Scene::~Scene(){
@@ -95,6 +94,8 @@ void Scene::initializeGL(){
     glEnable (GL_LIGHT0);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_MULTISAMPLE);
+
+    DeSetUp();
 }
 
 void Scene::resizeGL(int nWidth, int nHeight) {
@@ -376,7 +377,7 @@ void Scene::deleteVBO(GLobj &to_remove) {
 
 void Scene::run(){
     if (isRunning) {
-        m_time += model.getDelta();
+        m_time += model.getDelta() * 2; //idk why, but it's necessary
         model.updateData();
         if (!(frames_done % FBU)){
             emit newGraphData(m_time, model.getTheta(), model.getOmega());
@@ -415,10 +416,6 @@ void Scene::setType(int isBallUsed){
     model.setComp(isBallUsed ? BALL : NONE);
 }
 
-void Scene::setDelta(double new_delta){
-    model.setSpd(new_delta);
-}
-
 void Scene::setDamping(double damp_data){
     model.setDamp(damp_data);
 }
@@ -426,6 +423,7 @@ void Scene::setDamping(double damp_data){
 void Scene::setSpeed(int new_speed){
     model.setSpd(SPF * static_cast<double>(new_speed) / 100.0);
 }
+
 void Scene::setImpulse(double new_impulse){
     model.setImp(new_impulse);
 }
@@ -435,7 +433,7 @@ void Scene::setLength(double new_length){
 }
 
 void Scene::DeSetUp(){
-    frames_done = 0;
+    m_time = 0;
     if (isRunning)
         isRunning = !isRunning;
     swing->setRotation(QVector3D(0.0f, 0.0f, 0.0f));
