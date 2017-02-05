@@ -24,10 +24,15 @@ signals:
     //void on_hsSpeed_valueChanged(int value);
 
 
+private slots:
+    void on_pbStart_clicked(bool checked);
+
+    void on_pbReload_clicked(bool checked);
+
 private:
     Ui::MainWindow *ui;
     Graphs *phaze, *angle, *impulse;
-
+    bool isRunning = false;
 };
 
 #endif // MAINWINDOW_H

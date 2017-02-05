@@ -5,7 +5,7 @@ GLfloat light_diffuse[] = {0.5f, 0.5f, 0.5f, 0.0f};
 GLfloat light_position[] = {0.0f, 3.0f, -4.0f, 2.0f};
 GLfloat light_position0[] = {1.0f, 1.0f, 1.0f, 0.0f};
 
-Scene::Scene(QWidget *){
+Scene::Scene(QWidget *parent){
 	QSurfaceFormat format;
     format.setVersion(2, 0);
 	format.setProfile(QSurfaceFormat::CompatibilityProfile);
@@ -100,18 +100,14 @@ void Scene::initializeGL(){
 void Scene::resizeGL(int nWidth, int nHeight) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    GLfloat width, height, tangent;
     glViewport(0, 0,(GLint)nWidth, (GLint)nHeight);
     GLfloat ratio=(GLfloat)nHeight / (GLfloat)nWidth;
     if (nWidth>=nHeight)
         glOrtho(-1.0/ratio, 1.0/ratio, -1.0, 1.0, -10.0, 30.0);
     else
         glOrtho(-1.0, 1.0, -1.0*ratio, 1.0*ratio, -10.0, 30.0);
-    //tangent = tan(90/2 * 3.14159265 / 180);
-    //height = nSca * tangent;
-    //width = height * ratio;
-    //glFrustum(-2.0f, 2.0f, -2.0f, 2.0f, -5.0f, 10.0f);
-    glMatrixMode (GL_MODELVIEW);
+    glFrustum(-2.0f * nWidth, 2.0f * nWidth, -2.0f * nHeight, 2.0f * nHeight, -5.0f, 10.0f);
+    glMatrixMode(GL_MODELVIEW);
 }
 
 void Scene::paintGL() {
@@ -135,7 +131,7 @@ void Scene::teardownGL(){
     glDisable(GL_DEPTH_TEST);
     glDisable(GL_CULL_FACE);
     glDisable(GL_LIGHTING);
-    glDisable (GL_LIGHT1);
+    glDisable(GL_LIGHT1);
     glDisable(GL_MULTISAMPLE);
 }
 
@@ -166,12 +162,6 @@ void Scene::keyPressEvent(QKeyEvent *qke){
         swing->setRotation(swing->getRotation() +
                     QVector3D(-1.0f, 0.0f, 0.0f));
         break;
-	case Qt::Key_G:
-        //rodReload(false);
-		break;
-	case Qt::Key_H:
-        //rodReload(true);
-		break;
     case Qt::Key_Plus:
         Scale(PLUS);
         break;
@@ -273,6 +263,7 @@ void Scene::draw() {
     //Draw angles
     glColor3f(1.0, 0.0, 0.0);
     glPushMatrix();
+
     glTranslatef(0.2f, 1.8f, 0.0f);
     glRotatef(134.0f, 1.0f, 0.0f, 0.0f);
     for(int x = 0; x < 181; ++x){
@@ -286,6 +277,7 @@ void Scene::draw() {
         glEnd();
     }
     glTranslatef(0.0f, 0.0f, 0.0f);
+
     glPopMatrix();
     glColor3f(1.0, 1.0, 1.0);
     RenderGLobj(*stand);
@@ -383,20 +375,14 @@ void Scene::deleteVBO(GLobj &to_remove) {
 }
 
 void Scene::run(){
-    //throw 2;
     if (isRunning) {
         m_time += model.getDelta();
-        //model.currentTime(time);
         model.updateData();
         if (!(frames_done % FBU)){
             emit newGraphData(m_time, model.getTheta(), model.getOmega());
         }
         swing->setRotation(QVector3D(model.getTheta(), 0.0f, 0.0f));
-
     }
-    emit diffAngle(model.getTheta());
-    emit diffFreq(model.getPeriod());
-
 }
 
 void Scene::toggleRunning(bool){
@@ -449,6 +435,10 @@ void Scene::setLength(double new_length){
 }
 
 void Scene::DeSetUp(){
+    frames_done = 0;
+    if (isRunning)
+        isRunning = !isRunning;
+    swing->setRotation(QVector3D(0.0f, 0.0f, 0.0f));
     model.setTht0(0);
     model.setImp(0);
     model.setDamp(90);
@@ -457,6 +447,6 @@ void Scene::DeSetUp(){
     update(); ///force update the render
 }
 
-void Scene::flushChanges(bool b){
+void Scene::flushChanges(bool){
     DeSetUp();
 }
