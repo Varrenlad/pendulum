@@ -97,7 +97,10 @@ void Phyzxmodel::updateData(){
     swing_period = 2 * PI * sqrt(rod_length + G) *
             (1 + 1/4 * pow(sin(data.x() / 2), 2) +
              9/64*pow(sin(data.x() / 2), 4));
-    RK4();
+    if (is_enabled)
+        RK4();
+    else
+        return;
 }
 
 double Phyzxmodel::getKEnergy(){

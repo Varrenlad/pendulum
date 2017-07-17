@@ -13,7 +13,7 @@ enum COMPOUND{NONE = 0, BALL};
 class Phyzxmodel
 {
 public:
-    Phyzxmodel();
+    Phyzxmodel(bool is_enabled = true);
     void setUp();
     void updateData();
     double getKEnergy();
@@ -37,6 +37,7 @@ public:
     COMPOUND getComp();
 
 private:
+    bool is_enabled = true;
     void isReady();
     QVector2D RK4Step(QVector2D y);
     void RK4();
